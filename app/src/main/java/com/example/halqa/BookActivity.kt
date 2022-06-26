@@ -1,7 +1,7 @@
 package com.example.halqa
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.halqa.databinding.ActivityBookBinding
 
 class BookActivity : AppCompatActivity() {
@@ -16,7 +16,15 @@ class BookActivity : AppCompatActivity() {
         initViews()
     }
 
-    private fun initViews(){
-        binding.pdfbook.fromAsset("Halqa.pdf").load()
+    private fun initViews() {
+        when (intent.getStringExtra("language")) {
+            getString(R.string.language_latin) -> {
+                binding.pdfbook.fromAsset("Halqa.pdf").load()
+            }
+            getString(R.string.language_krill) -> {
+                binding.pdfbook.fromAsset("ҲАЛҚА.pdf").load()
+            }
+
+        }
     }
 }

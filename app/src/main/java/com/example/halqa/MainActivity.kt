@@ -20,8 +20,15 @@ class MainActivity : AppCompatActivity() {
     private fun initViews(){
         binding.buttonLotincha.setOnClickListener {
             val intent = Intent(this, CategoryActivity::class.java)
+            intent.putExtra("language", getString(R.string.language_latin))
             startActivity(intent)
         }
+        binding.buttonKirilcha.setOnClickListener {
+            val intent = Intent(this, CategoryActivity::class.java)
+            intent.putExtra("language", getString(R.string.language_krill))
+            startActivity(intent)
+        }
+
     }
 
 }
