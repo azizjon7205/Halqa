@@ -38,7 +38,7 @@
                         android:id="@+id/iv_book1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/im_halqa_pdf_lotin"/>
+                        android:src="@drawable/im_halqa_pdf_latin"/>
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
@@ -58,7 +58,7 @@
                         android:id="@+id/iv_book2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/im_jangchi_pdf_lotin"/>
+                        android:src="@drawable/im_jangchi_pdf_latin"/>
                 </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
