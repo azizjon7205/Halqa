@@ -3,25 +3,24 @@ package com.example.halqa
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.halqa.databinding.ActivityMainBinding
+import com.example.halqa.databinding.ActivityCategoryBinding
 
-class MainActivity : AppCompatActivity() {
+class CategoryActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityCategoryBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initViews()
     }
 
     private fun initViews(){
-        binding.buttonLotincha.setOnClickListener {
-            val intent = Intent(this, CategoryActivity::class.java)
+        binding.mcv1.setOnClickListener {
+            val intent = Intent(this, BookActivity::class.java)
             startActivity(intent)
         }
     }
-
 }
