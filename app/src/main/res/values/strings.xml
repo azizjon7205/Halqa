@@ -8,6 +8,9 @@
     <string name="language_latin">latin</string>
     <string name="language_krill">krill</string>
 
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+
     <string-array name="chapters">
         <item>BIRINCHI BOB
 BRITANIYALIK JURNALISTLAR
