@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.fragment.HomeFragment">
 
-    <!--<com.airbnb.lottie.LottieAnimationView
+    <com.airbnb.lottie.LottieAnimationView
         android:layout_width="353dp"
         android:layout_height="400dp"
         app:layout_constraintBottom_toTopOf="@+id/button_lotincha"
@@ -45,14 +43,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.923" />-->
+        app:layout_constraintVertical_bias="0.923" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph"
-        android:name="androidx.navigation.fragment.NavHostFragment"/>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
