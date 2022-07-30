@@ -47,8 +47,7 @@
             android:id="@+id/ivPlay"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_play"/>
+            android:layout_gravity="center_vertical" />
     </LinearLayout>
 
     <LinearLayout
