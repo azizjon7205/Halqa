@@ -1,6 +1,7 @@
 package com.example.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,7 @@ import com.example.helper.OnItemClickListner
 import com.example.model.Halqa
 
 class AudioBookAdapter(private var onItemClickListner: OnItemClickListner) :
-    ListAdapter<Halqa, RecyclerView.ViewHolder> (DiffUtil()) {
+    ListAdapter<Halqa, RecyclerView.ViewHolder>(DiffUtil()) {
 
     override fun getItemViewType(position: Int): Int {
         return position
@@ -24,22 +25,28 @@ class AudioBookAdapter(private var onItemClickListner: OnItemClickListner) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
-        when(holder){
-            is ViewHolder.ItemBookChapter ->{
+        when (holder) {
+            is ViewHolder.ItemBookChapter -> {
                 holder.view.apply {
 
                     tvBob.text = item.bob
 
-                    if (item.isDownload){
+                    if (item.isDownload) {
                         ivPlay.setImageResource(R.drawable.ic_play)
-                    }else{
+                    } else {
                         ivPlay.setImageResource(R.drawable.ic_download)
                     }
 
                     ivPlay.setOnClickListener {
-                        if (item.isDownload){
-                            onItemClickListner.onItemPlay(item.bookName, "${item.bookName}${item.bob}.mp3")
-                        }else{
+                        if (item.isDownload) {
+                            onItemClickListner.onItemPlay(
+                                item.bookName,
+                                "${item.bookName}${item.bob}.mp3",
+                                seekBar,
+                                tvSecond
+                            )
+                            llSeek.visibility = View.VISIBLE
+                        } else {
                             onItemClickListner.onItemDownload(item)
                         }
                     }
