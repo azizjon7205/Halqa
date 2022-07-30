@@ -55,7 +55,7 @@
         android:id="@+id/llSeek"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <SeekBar
