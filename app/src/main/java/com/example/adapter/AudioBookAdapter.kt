@@ -35,7 +35,8 @@ class AudioBookAdapter(var fragment: HalqaAudioFragment, var items: ArrayList<Ha
             binding.apply {
                 tvBob.text = item.bob
                 ivPlay.setOnClickListener {
-                    fragment.downloadAudio(item.url)
+                    //fragment.downloadAudio(item.url)
+                    fragment.downloadFile(item.url)
                 }
             }
         }
