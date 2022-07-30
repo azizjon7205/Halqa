@@ -16,9 +16,10 @@
         <entry key="..\:/PDP/Android BootCamp/Test/Halqa/app/src/main/res/layout/activity_main.xml" value="0.152" />
         <entry key="..\:/PDP/Android BootCamp/Test/Halqa/app/src/main/res/layout/fragment_book.xml" value="0.25" />
         <entry key="..\:/PDP/Android BootCamp/Test/Halqa/app/src/main/res/layout/fragment_category.xml" value="0.264" />
-        <entry key="..\:/PDP/Android BootCamp/Test/Halqa/app/src/main/res/layout/fragment_halqa_audio.xml" value="0.264" />
+        <entry key="..\:/PDP/Android BootCamp/Test/Halqa/app/src/main/res/layout/fragment_halqa_audio.xml" value="0.4" />
         <entry key="..\:/PDP/Android BootCamp/Test/Halqa/app/src/main/res/layout/fragment_home.xml" value="0.2359375" />
-        <entry key="..\:/PDP/Android BootCamp/Test/Halqa/app/src/main/res/layout/item_audio_book.xml" value="0.264" />
+        <entry key="..\:/PDP/Android BootCamp/Test/Halqa/app/src/main/res/layout/item_audio_book.xml" value="0.6" />
+        <entry key="..\:/PDP/Android BootCamp/Test/Halqa/app/src/main/res/layout/item_book_chapter.xml" value="0.25" />
         <entry key="..\:/PDP/Android BootCamp/Test/Halqa/app/src/main/res/menu/menu.xml" value="0.24895833333333334" />
       </map>
     </option>
