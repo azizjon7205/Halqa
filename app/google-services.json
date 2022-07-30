@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "824075875533",
+    "project_id": "halqa-f2d7b",
+    "storage_bucket": "halqa-f2d7b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824075875533:android:2d526413df15295cbfe584",
+        "android_client_info": {
+          "package_name": "com.example.halqa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824075875533-r2lr3amiu9gr8pt2rdgvf3cf3gbevpis.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.halqa",
+            "certificate_hash": "e47037922392caa6145dbacd929014e259c0f4ab"
+          }
+        },
+        {
+          "client_id": "824075875533-3hf9qq0eepoanpdcij6g3aismcd16r02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxT-xiGDTNxxA934XtuOjRXLKGYFwJDK0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824075875533-3hf9qq0eepoanpdcij6g3aismcd16r02.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

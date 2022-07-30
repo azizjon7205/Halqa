@@ -8,7 +8,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.halqa.R
 import com.example.halqa.databinding.FragmentCategoryBinding
 
-
 class CategoryFragment : Fragment(R.layout.fragment_category) {
     private val binding by viewBinding(FragmentCategoryBinding::bind)
     lateinit var language:String
@@ -57,6 +56,8 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
             }
         }
 
-
+        binding.ivBook3.setOnClickListener {
+            findNavController().navigate(R.id.action_categoryFragment_to_halqaAudioFragment)
+        }
     }
 }
