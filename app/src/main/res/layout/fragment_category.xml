@@ -108,7 +108,7 @@
                         android:id="@+id/iv_book4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/im_jangchi_audio_1_latin"/>
+                        android:src="@drawable/im_jangchi_audio_2_latin"/>
                 </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -157,7 +157,7 @@
                         android:id="@+id/iv_book6"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/im_jangchi_audio_2_latin"/>
+                        android:src="@drawable/im_jangchi_audio_1_latin"/>
                 </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

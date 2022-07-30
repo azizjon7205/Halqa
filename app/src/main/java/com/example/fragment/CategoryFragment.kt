@@ -8,6 +8,8 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.halqa.R
 import com.example.halqa.databinding.FragmentCategoryBinding
+import com.example.utils.Constants.HALQA
+import com.example.utils.Constants.JANGCHI
 
 class CategoryFragment : Fragment(R.layout.fragment_category) {
     private val binding by viewBinding(FragmentCategoryBinding::bind)
@@ -61,7 +63,13 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
         }
 
         binding.ivBook3.setOnClickListener {
-            findNavController().navigate(R.id.action_categoryFragment_to_halqaAudioFragment)
+            findNavController().navigate(R.id.action_categoryFragment_to_halqaAudioFragment,
+                bundleOf("audio" to HALQA))
+        }
+
+        binding.ivBook4.setOnClickListener {
+            findNavController().navigate(R.id.action_categoryFragment_to_halqaAudioFragment,
+                bundleOf("audio" to JANGCHI))
         }
     }
 }
