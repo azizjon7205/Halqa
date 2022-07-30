@@ -2,13 +2,10 @@ package com.example.fragment
 
 import android.app.DownloadManager
 import android.content.Context
-import android.media.MediaDataSource
-import android.media.MediaPlayer
 import android.content.IntentFilter
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -19,10 +16,6 @@ import com.example.halqa.databinding.FragmentHalqaAudioBinding
 import com.example.helper.OnItemClickListner
 import com.example.model.Halqa
 import com.example.receiver.AudioDownloadReceiver
-import com.example.utils.Constants.HALQA
-import com.example.utils.Constants.JANGCHI
-import java.io.File
-import kotlin.math.log
 
 
 class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
@@ -36,6 +29,7 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
             book = it.getString("audio")!!
         }
     }
+
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var adapter: AudioBookAdapter
     private lateinit var audioDownloadReceiver: AudioDownloadReceiver
@@ -44,7 +38,8 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
         super.onViewCreated(view, savedInstanceState)
         appDatabase = AppDatabase.getInstance(requireContext())
         audioDownloadReceiver = AudioDownloadReceiver()
-        requireActivity().registerReceiver(audioDownloadReceiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+        requireActivity().registerReceiver(audioDownloadReceiver,
+            IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
         initViews()
     }
 
@@ -54,8 +49,8 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
     }
 
     private fun refreshAdapter() {
-        val items = appDatabase.halqaDao().getPosts(HALQA) as ArrayList<Halqa>
-        adapter = AudioBookAdapter( object : OnItemClickListner{
+        val items = appDatabase.halqaDao().getPosts(book) as ArrayList<Halqa>
+        adapter = AudioBookAdapter(object : OnItemClickListner {
             override fun onItemDownload(halqa: Halqa) {
                 downloadFile(halqa)
             }
@@ -67,7 +62,6 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
                 mediaPlayer.prepare()
                 mediaPlayer.start()
 
-                Log.d("TAG", "onItemPlay: ${mediaPlayer.duration}")
             }
         })
 
@@ -97,7 +91,7 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
         audioDownloadReceiver.onDownloadCompleted = {
 
             appDatabase.halqaDao().updatePost(true, halqa.id!!)
-            val items = appDatabase.halqaDao().getPosts(HALQA) as ArrayList<Halqa>
+            val items = appDatabase.halqaDao().getPosts(book) as ArrayList<Halqa>
 
             adapter.submitList(items)
         }
