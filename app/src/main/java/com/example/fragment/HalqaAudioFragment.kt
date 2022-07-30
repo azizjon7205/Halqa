@@ -2,6 +2,8 @@ package com.example.fragment
 
 import android.app.DownloadManager
 import android.content.Context
+import android.media.MediaDataSource
+import android.media.MediaPlayer
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
@@ -26,6 +28,15 @@ import kotlin.math.log
 class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
     private val binding by viewBinding(FragmentHalqaAudioBinding::bind)
     private lateinit var appDatabase: AppDatabase
+    private lateinit var book: String
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            book = it.getString("audio")!!
+        }
+    }
+    private lateinit var mediaPlayer: MediaPlayer
     private lateinit var adapter: AudioBookAdapter
     private lateinit var audioDownloadReceiver: AudioDownloadReceiver
 
@@ -38,8 +49,14 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
     }
 
     private fun initViews() {
+        mediaPlayer = MediaPlayer()
+        refreshAdapter()
+    }
+
+    private fun refreshAdapter() {
         val items = appDatabase.halqaDao().getPosts(HALQA) as ArrayList<Halqa>
         adapter = AudioBookAdapter( object : OnItemClickListner{
+        val adapter = AudioBookAdapter(this, items, object : OnItemClickListner{
             override fun onItemDownload(halqa: Halqa) {
                 downloadFile(halqa)
 
@@ -52,8 +69,15 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
             }
 
             override fun onItemPlay(fileName: String, audioName: String) {
+                val filePath =
+                    "${requireContext().getExternalFilesDir(null)}/HalqaKitob/${fileName}/$audioName"
+                mediaPlayer.setDataSource(requireContext(), Uri.parse(filePath))
+                mediaPlayer.prepare()
+                mediaPlayer.start()
 
+                Log.d("TAG", "onItemPlay: ${mediaPlayer.duration}")
             }
+        })
         })
 
         adapter.submitList(items)
@@ -61,7 +85,7 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
     }
 
     fun downloadFile(halqa: Halqa) {
-        var folderName = "HalqaKitob/${halqa.bookName}"
+        val folderName = "HalqaKitob/${halqa.bookName}"
         val request = DownloadManager.Request(Uri.parse(halqa.url))
             .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
             .setTitle("Halqa")
@@ -69,10 +93,16 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             .setAllowedOverMetered(true)
             .setAllowedOverRoaming(false)
-            .setDestinationInExternalFilesDir(context, folderName,"${halqa.bookName}${halqa.bob}.mp3")
+            .setDestinationInExternalFilesDir(
+                context,
+                folderName,
+                "${halqa.bookName}${halqa.bob}.mp3"
+            )
         val downloadManager =
             requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val downloadID = downloadManager.enqueue(request)
+        appDatabase.halqaDao().updatePost(true, halqa.id!!)
+        refreshAdapter()
 
     }
 }
