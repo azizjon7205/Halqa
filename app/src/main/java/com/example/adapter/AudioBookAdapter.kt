@@ -40,7 +40,7 @@ class AudioBookAdapter(var fragment: HalqaAudioFragment, var items: ArrayList<Ha
                 if (item.isDownload){
                     ivPlay.setImageResource(R.drawable.ic_play)
                 }else{
-                    ivPlay.setImageResource(R.drawable.ic_download)
+
                 }
 
                 ivPlay.setOnClickListener {
