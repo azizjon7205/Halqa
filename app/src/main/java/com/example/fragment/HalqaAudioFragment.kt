@@ -18,7 +18,7 @@ import java.io.File
 
 class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
     private val binding by viewBinding(FragmentHalqaAudioBinding::bind)
-    lateinit var folderName: String
+    private var items = ArrayList<Halqa>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,72 +26,38 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
     }
 
     private fun initViews() {
-        folderName = "HalqaKitob"
-
-        createFolder(requireContext(),folderName)
-
         refreshAdapter(itemsList())
     }
 
     fun refreshAdapter(items: ArrayList<Halqa>) {
-        val adapter = AudioBookAdapter(this, items)
+        val adapter = AudioBookAdapter(this, items){
+            downloadFile(it)
+        }
         binding.recyclerView.adapter = adapter
     }
 
     fun itemsList(): ArrayList<Halqa> {
-        val items = ArrayList<Halqa>()
         val urls = resources.getStringArray(R.array.jangchi).toList()
 
-        Log.d("@@@", "UrlList: $urls")
-
         urls.forEachIndexed { index, item ->
-            items.add(Halqa("${index + 1}-bob", item))
+            items.add(Halqa(bob = "${index + 1}-bob", url = item, bookName = "Halqa"))
         }
-
-        Log.d("@@@", "itemsList: $items")
-
         return items
     }
 
-    fun downloadAudio(url: String) {
-        Log.d("TAG", "downloadAudio: $url")
-        val manager = activity!!.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager?
-        val uri: Uri =
-            Uri.parse(url)
-        val request = DownloadManager.Request(uri)
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-        val reference: Long = manager!!.enqueue(request)
-    }
-
-    fun downloadFile(url: String) {
-
-        // fileName -> fileName with extension
-        val request = DownloadManager.Request(Uri.parse(url))
+    fun downloadFile(halqa: Halqa) {
+        var folderName = "HalqaKitob/${halqa.bookName}"
+        val request = DownloadManager.Request(Uri.parse(halqa.url))
             .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
             .setTitle("Halqa")
             .setDescription("Halqa Audio Kitob")
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             .setAllowedOverMetered(true)
             .setAllowedOverRoaming(false)
-            .setDestinationInExternalFilesDir(context, folderName,"HalqaKitob")
+            .setDestinationInExternalFilesDir(context, folderName,"${halqa.bookName}${halqa.bob}.mp3")
         val downloadManager =
-            activity!!.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+            requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val downloadID = downloadManager.enqueue(request)
+        refreshAdapter(items)
     }
-
-    private fun createFolder(context: Context, folderName: String): String {
-
-        //getting app directory
-        val externalFileDir = context.getExternalFilesDir(null)
-
-        //creating new folder instance
-        val createdDir = File(externalFileDir!!.absoluteFile, folderName)
-        if (!createdDir.exists()) {
-
-            //making new directory if it doesn't exist already
-            createdDir.mkdir()
-        }
-        return createdDir.absolutePath.toString() + "/" + System.currentTimeMillis() + ".txt"
-    }
-
 }

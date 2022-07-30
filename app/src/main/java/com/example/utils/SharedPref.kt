@@ -13,4 +13,6 @@ class SharedPref constructor(val context: Context) {
     fun getLastPageNumber(key: String): Int {
         return sharedPref.getInt(key, 0)
     }
+
+    var isOneCreate = true
 }
