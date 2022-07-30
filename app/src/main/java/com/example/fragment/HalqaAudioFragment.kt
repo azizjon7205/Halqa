@@ -10,40 +10,36 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.adapter.AudioBookAdapter
+import com.example.database.AppDatabase
 import com.example.halqa.R
 import com.example.halqa.databinding.FragmentHalqaAudioBinding
 import com.example.model.Halqa
+import com.example.utils.Constants.HALQA
 import java.io.File
 
 
 class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
     private val binding by viewBinding(FragmentHalqaAudioBinding::bind)
-    private var items = ArrayList<Halqa>()
+    private lateinit var appDatabase: AppDatabase
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        appDatabase = AppDatabase.getInstance(requireContext())
         initViews()
     }
 
     private fun initViews() {
-        refreshAdapter(itemsList())
+        refreshAdapter()
     }
 
-    fun refreshAdapter(items: ArrayList<Halqa>) {
+    fun refreshAdapter() {
+        val items = appDatabase.halqaDao().getPosts(HALQA) as ArrayList<Halqa>
         val adapter = AudioBookAdapter(this, items){
             downloadFile(it)
         }
         binding.recyclerView.adapter = adapter
     }
 
-    fun itemsList(): ArrayList<Halqa> {
-        val urls = resources.getStringArray(R.array.jangchi).toList()
-
-        urls.forEachIndexed { index, item ->
-            items.add(Halqa(bob = "${index + 1}-bob", url = item, bookName = "Halqa"))
-        }
-        return items
-    }
 
     fun downloadFile(halqa: Halqa) {
         var folderName = "HalqaKitob/${halqa.bookName}"
@@ -58,6 +54,6 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
         val downloadManager =
             requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val downloadID = downloadManager.enqueue(request)
-        refreshAdapter(items)
+       // refreshAdapter(items)
     }
 }

@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.database.AppDatabase
 import com.example.model.Halqa
+import com.example.utils.Constants.HALQA
 import com.example.utils.SharedPref
 
 class SplashActivity : AppCompatActivity() {
@@ -17,6 +18,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         val sharedPref = SharedPref(this)
+
         if (sharedPref.isOneCreate){
             Log.d("TAG", "onCreate: ")
             val appDatabase = AppDatabase.getInstance(this)
@@ -24,7 +26,7 @@ class SplashActivity : AppCompatActivity() {
             val urls = resources.getStringArray(R.array.halqa).toList()
 
             urls.forEachIndexed { index, item ->
-                val halqa = Halqa(bob = "${index + 1}-bob" , bookName = "Halqa", url = item, isDownload = false)
+                val halqa = Halqa(bob = "${index + 1}-bob" , bookName = HALQA, url = item, isDownload = false)
                 appDatabase.halqaDao().createPost(halqa)
             }
 
