@@ -38,7 +38,7 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
             book = it.getString("audio")!!
         }
     }
-
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         appDatabase = AppDatabase.getInstance(requireContext())

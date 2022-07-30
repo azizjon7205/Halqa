@@ -1,5 +1,6 @@
 package com.example.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,8 @@ class AudioBookAdapter(private var onItemClickListner: OnItemClickListner) :
         when (holder) {
             is ViewHolder.ItemBookChapter -> {
                 holder.view.apply {
+                    progress.visibility = View.GONE
+                    audioName.text = item.bookName
 
                     tvBob.text = item.bob
 
@@ -38,6 +41,11 @@ class AudioBookAdapter(private var onItemClickListner: OnItemClickListner) :
                     }
 
                     ivPlay.setOnClickListener {
+                        if (item.isDownload){
+                            Log.d("TAG", "onBindViewHolder: ")
+                            onItemClickListner.onItemPlay(item.bookName, "${item.bookName}${item.bob}.mp3")
+                        }else{
+                            progress.visibility = View.VISIBLE
                         if (item.isDownload) {
                             onItemClickListner.onItemPlay(
                                 item.bookName,
