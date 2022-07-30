@@ -6,6 +6,7 @@ import android.content.IntentFilter
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -50,6 +51,8 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
 
     private fun refreshAdapter() {
         val items = appDatabase.halqaDao().getPosts(book) as ArrayList<Halqa>
+        Log.d("TAG", "refreshAdapter: ${items.size}")
+        Log.d("TAG", "refreshAdapter: ${items}")
         adapter = AudioBookAdapter(object : OnItemClickListner {
             override fun onItemDownload(halqa: Halqa) {
                 downloadFile(halqa)

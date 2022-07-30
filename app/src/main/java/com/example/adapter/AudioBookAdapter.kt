@@ -11,6 +11,7 @@ import com.example.halqa.R
 import com.example.halqa.databinding.ItemAudioBookBinding
 import com.example.helper.OnItemClickListner
 import com.example.model.Halqa
+import com.example.utils.Constants.JANGCHI
 
 class AudioBookAdapter(private var onItemClickListner: OnItemClickListner) :
     ListAdapter<Halqa, RecyclerView.ViewHolder> (DiffUtil()) {
@@ -34,6 +35,10 @@ class AudioBookAdapter(private var onItemClickListner: OnItemClickListner) :
 
                     tvBob.text = item.bob
 
+                    if (item.bookName == JANGCHI){
+                        ivBook.setImageResource(R.drawable.jangchi)
+                    }
+
                     if (item.isDownload){
                         ivPlay.setImageResource(R.drawable.ic_play)
                     }else{
@@ -42,7 +47,6 @@ class AudioBookAdapter(private var onItemClickListner: OnItemClickListner) :
 
                     ivPlay.setOnClickListener {
                         if (item.isDownload){
-                            Log.d("TAG", "onBindViewHolder: ")
                             onItemClickListner.onItemPlay(item.bookName, "${item.bookName}${item.bob}.mp3")
                         }else{
                             progress.visibility = View.VISIBLE

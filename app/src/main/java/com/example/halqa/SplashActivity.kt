@@ -27,6 +27,7 @@ class SplashActivity : AppCompatActivity() {
 
             halqaList.forEachIndexed { index, item ->
                 val halqa = Halqa(bob = "${index + 1}-bob" , bookName = HALQA, url = item, isDownload = false)
+                Log.d("TAG", "refreshAdapter: ${index}")
                 appDatabase.halqaDao().createPost(halqa)
             }
             val jangchiList = resources.getStringArray(R.array.jangchi).toList()
