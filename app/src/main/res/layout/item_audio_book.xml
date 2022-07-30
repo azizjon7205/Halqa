@@ -101,6 +101,5 @@
              android:fontFamily="@font/poppins"
              android:textSize="12sp"/>
      </LinearLayout>
-
  </LinearLayout>
 </androidx.cardview.widget.CardView>
