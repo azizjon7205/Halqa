@@ -64,5 +64,6 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
             requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val downloadID = downloadManager.enqueue(request)
        // refreshAdapter(items)
+        appDatabase.halqaDao().updatePost(true, halqa.id!!)
     }
 }
