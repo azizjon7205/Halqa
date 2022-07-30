@@ -18,7 +18,9 @@ import com.example.halqa.databinding.FragmentHalqaAudioBinding
 import com.example.helper.OnItemClickListner
 import com.example.model.Halqa
 import com.example.utils.Constants.HALQA
+import com.example.utils.Constants.JANGCHI
 import java.io.File
+import kotlin.math.log
 
 
 class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
@@ -39,7 +41,7 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
 
     private fun refreshAdapter() {
         val items = appDatabase.halqaDao().getPosts(HALQA) as ArrayList<Halqa>
-        val adapter = AudioBookAdapter(this, items, object : OnItemClickListner {
+        val adapter = AudioBookAdapter(this, items, object : OnItemClickListner{
             override fun onItemDownload(halqa: Halqa) {
                 downloadFile(halqa)
             }
