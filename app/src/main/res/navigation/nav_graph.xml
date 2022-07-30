@@ -30,10 +30,19 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+            app:destination="@id/bookFragment" />
+        <action
+            android:id="@+id/action_categoryFragment_to_halqaAudioFragment"
+            app:destination="@id/halqaAudioFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookFragment"
         android:name="com.example.fragment.BookFragment"
         android:label="fragment_book"
         tools:layout="@layout/fragment_book" />
+    <fragment
+        android:id="@+id/halqaAudioFragment"
+        android:name="com.example.fragment.HalqaAudioFragment"
+        android:label="fragment_halqa_audio"
+        tools:layout="@layout/fragment_halqa_audio" />
 </navigation>

@@ -56,6 +56,8 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
             }
         }
 
-
+        binding.ivBook3.setOnClickListener {
+            findNavController().navigate(R.id.action_categoryFragment_to_halqaAudioFragment)
+        }
     }
 }
