@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">Halqa</string>
     <string name="app_lotincha">LOTINCHA!</string>
     <string name="app_kirilcha">КИРИЛЧА!</string>
@@ -7,7 +8,10 @@
     <string name="language_latin">latin</string>
     <string name="language_krill">krill</string>
 
-    <string-array name="bobs">
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+
+    <string-array name="chapters">
         <item>BIRINCHI BOB
 BRITANIYALIK JURNALISTLAR
         </item>
@@ -206,9 +210,9 @@ MUALLIF SHUKRONASI
 
     </string-array>
 
-    <string-array name="matn">
+    <string-array name="text_of_chapters">
         <item>
-            ... Hind ummonidan suzib borayotgan kemaning nomi “Urvatul vusqo” bo‘lib, yo‘lovchilar bu kemaga Indoneziya bandargohidan chiqib, Saudiya sohillarida tuproqqa tushadilar.
+            … Hind ummonidan suzib borayotgan kemaning nomi “Urvatul vusqo” bo‘lib, yo‘lovchilar bu kemaga Indoneziya bandargohidan chiqib, Saudiya sohillarida tuproqqa tushadilar.
 Musulmon shirkatiga tegishlik kema ming nafar yo‘lovchini sig‘diradi. Ular ichida har toifa insonlarni uchratish mumkin. Biroq kemaning qat’iy qoidasi bor: unda islomiy axloq hukm suradi. Kemaga chiqishdan avvalroq – chipta sotib olishdayoq bu qoida har bir insonga tushuntiriladi. Ochiq kiyinish, ajnabiy musiqalar tinglash, behayo odatlar ta’qiqlangan. Sarxush qiluvchi ichimliklar ichilmaydi, tamaki chekilmaydi. Kemaning ichida ham ixchamroq masjid bor. Bo‘lmalari har bir oila uchun alohida.
 G‘ayridin ayol yo o‘zi, yo eri bilan chiqa oladi. Muslimalardan hamisha mahramlari bo‘lishi talab etiladi. Istisno holatlar ham bor, buni kema rahbariyati hal qiladi.
 Erning bo‘yi baland, ammo ozg‘in, inglizlarga xos yuzi oqsariq, sochlari qizg‘ishtob jingalak, burni uzun, yonoqlari turtib chiqqan, sepkilli, ko‘zlari ko‘kish rangda.
@@ -636,14 +640,14 @@ Bu gapidan qonim qaynab ketdi. Men bu itdan shariat hukmini so‘rasam, mening r
 – Isming nima? – so‘radim undan.
 – O‘roz, begim, – dedi o‘g‘ri. Turqidan nashavandligini sezdim.
 – Nima o‘g‘irlading? – vajohatim yomon edi, shekilli, o‘g‘ri tipirchilab dedi:
-– Men... Men... Haligi...
+– Men… Men… Haligi…
 – Nima o‘g‘irlading, it! Kazzob! – hayqirib yubordim.
 Shunday hayqirdimki, ovozimda qahrimning hamma alangasi bor edi. Odamlar cho‘chib ketganini yaqqol sezdim.
-– Qo‘y... Qo‘y oldim, begim...
+– Qo‘y… Qo‘y oldim, begim…
 – Chap qo‘lini yechinglar, – dedim. O‘g‘ri yalina boshladi:
 – Rahm qiling, begim, rahm qiling! Shayton yo‘ldan urdi.
 Bir zumda chap qo‘lini yechib, o‘ngini tanasi bilan qo‘shib mahkamroq bog‘lashdi. O‘g‘ri chiyilladi:
-– Rahm qiling... Rahm qiling...
+– Rahm qiling… Rahm qiling…
 Men odamlardan so‘radim:
 – Kimning uyiga tushdi bu it?
 Qotmadan kelgan, qora bir odam chiqdi:
@@ -695,7 +699,7 @@ Shu payt tashqaridan biri besh, biri uch yoshli ikki bolakay chug‘urlashib kir
 Roziya xonim Shafiqaning qo‘lidan ushladi. Shafiqa sassiz-sadosiz holda ikki bolani yana bir marta bag‘riga bosib, keyin Roziya xonimning izidan yurdi.
 – Amina xonim, – dedi Roziya xonim xijolatomuz. – Bizni afv etasiz…
 – Nega unday deysiz? – dedi shoshib Amina taskin va tasalli ila. – Xijolat bo‘lmang…
-– Oyi, akam bilan uy qurdik, – deb kenjatoyning maqtanayotgani eshitildi ortdan...
+– Oyi, akam bilan uy qurdik, – deb kenjatoyning maqtanayotgani eshitildi ortdan…
 – Voy, ko‘zimning qorasi, u uyda kimlar yashaydi? – degani quloqqa chalindi Aminaning…
 Fotih Karimning ijodxonasi keng, yorug‘. U mehmonlarni o‘rnidan turib kutib oldi, xonimlarga yumshoq o‘rindiqlardan joy ko‘rsatib, o‘zi to‘rdagi yozuv stoliga cho‘kdi. Xonaning devorlariga suyangan javonlar turfa kitoblar ila to‘la.
 Duodan so‘ng, Fotih Karim mehmonlarga savolomuz boqdi.
@@ -859,7 +863,7 @@ Abdulloh Moyimxon o‘zi o‘ylaganchalik go‘l emasligini tushundi. Moyimxon k
 – Shunday, – javob berdi Moyimxon mamnuniyatdan yal-yal yonib. – Dindorlik va tajovuzkorlik hamisha yonma-yon yuradi. Dindan qutulish hamma yovuzlikdan qutulish demakdir.
 – Buni qarang, shunga sira ham aqlim yetmayotgan ekan, – zaharxanda qildi Abdulloh. – Kommunizmni eng ahmoqona g‘oya, odamzod uchun zararli, deb o‘ylasam va aytsam, bundan g‘azablanmang! Aks holda, siz ham, o‘z mantig‘ingizga ko‘ra, radikalizmni yuzaga chiqarasiz. Kommunistlar radikal emas, to‘g‘rimi, axir?!
 Birdan Moyimxonning tusi o‘zgardi.
-– Siz... Siz buyuk kommunizm haqida bunday deya olmaysiz!  – dedi kuchanib.
+– Siz… Siz buyuk kommunizm haqida bunday deya olmaysiz!  – dedi kuchanib.
 – Kechirasiz, qizishmang, radikal bo‘lmang!  – dedi Abdulloh.  – Kommunizmni siz Islomni rad etganingiz kabi rad etib, tahqirlaganingizdek, tahqirlayman. Biroq siz musulmonlar g‘azablangani kabi g‘azablanmang, bu radikalizmga aylanib qoladi.
 Moyimxon “mum” tishladi, lekin o‘zini tezda qo‘lga oldi:
  – Tilingizga erk bermang, mehmon, siz kommunistik davlatdasiz!  – dedi tish orasidan.
@@ -886,7 +890,7 @@ Nariga tomondan otasining tovushi keldi:
 – Va alaykum assalom. Abdulloh, senmisan, o‘g‘lim?
 – Ha, ota, Abdullohman, Urumchidaman. Yaxshi mehmonxonaga joylashtirishdi. Hammasi yaxshi, alhamdulillah.
 Ota-bola biroz gaplashishgach, xayrlashdilar.
-... Ertalab Abdulloh bomdodga uxlab qoldi. Uyg‘onganida kun yoyilib ketgan edi. Shoshib, tahorat oldi, fajrni ado etdi. Biroq ko‘ngli g‘ashlik changalida edi.
+… Ertalab Abdulloh bomdodga uxlab qoldi. Uyg‘onganida kun yoyilib ketgan edi. Shoshib, tahorat oldi, fajrni ado etdi. Biroq ko‘ngli g‘ashlik changalida edi.
 Nonushtadan so‘ng, ko‘tarmada pastga tushdi.
 Odam siyrak. Ko‘pchilik uxlayapti, shekilli. Abdulloh yumshoq o‘rindiqlardan biriga o‘tirdi, stolga tashlab qo‘yilgan gazetalardan birini oldi: ham uyg‘urcha, ham xitoycha. Birinchi sahifasida qirmizi sahnda Xitoy raisi savlat to‘kib turibdi, yonida daftarcha changallab, boshi egilgan bir necha kishi, xuddi eng muhim ishlari raisning nutqini yozib olishdangina iboratdek turishibdi. Abdullohga bu erish tuyulishi kerak edi, biroq Urumchi havosi uning o‘pkasiga kirib, qoniga singib ulgurgani uchunmi, negadir ajablanmadi. Go‘yo shunday bo‘lishi kerak, degan axborot uning miyasiga avvaldan quyib qo‘yilgan edi.
 Tuyqus bir chinqiriqdan Abdullohning hushi boshidan uchib, sakrab ketdi: ma’muriyat oldida bir xitoylik yosh xizmatchini tepib, baqirar edi. Abdulloh hayron qoldi, xizmatchiga biror tepki qattiq tegdi, shekilli, bukchayib hiqillab qoldi. Abdulloh ularning oldiga yugurdi. Xitoyi odam yerda yotganning yuzini majaqlamoqchidek oyog‘ini ko‘targan edi, Abdulloh uni itarib yubordi.
@@ -909,7 +913,7 @@ Bu taklif Anjelinaga jo‘yali tuyuldi. U mehmonga borib, avvalgi boblarda aytga
 Diqqatingizni bir haqiqatga qaratay: Bolqon Usmonlilar qo‘l ostida bo‘lgan paytlarda xalq juda osoyishta yashadi. Zotan, Islom zamonamizning ayrim “madaniyatli” va “ilg‘or” insonlari kabi terining rangi, tilga, nasl-nasabingga qaramaydi, o‘z nafsiga yoqmagan birovni yerga urib, o‘ziga mahbub birovni ko‘kka ko‘tarmaydi. Islom qandaydir zo‘ravonlarning ra’yi, kayfiyati, tuyg‘usi, istaklariga boqib yashash emas, balki har ishni ilohiy qonunga muvofiq bajaradigan dindir.
 Anjelina xonim, mening erimni, o‘g‘lim Umarning otasini Muso poshsho, deyishardi. U o‘lkamizdagi musulmonlarning rahnamosi edi. U barcha ichki diniy masalalarni hal etardi, hukumat ham u kishi bilan hisoblashib ish tutardi. Muso poshshoning biror gapi yerda qolmagan. Borgan joyida boshga ko‘tarib kutib olardilar.
 Nasroniylar ham, zo‘ravonlar ham, Muso poshsho bor ekan, o‘zboshimchalik qilishga jur’at etmadilar.
-U paytlari biz juda muhtasham uyda yashardik. Umarning yetti akasi, ikki opasi bor edi. Nevaralarim quchog‘imda, kelinlar xizmatimda edi. U paytlar oftob boshqacha porlab, oqshomlar o‘zgacha tarovat kasb etardi. Kunlardan bir kuni Muso poshsho uyga har kungidan erta qaytdi. Biz endi peshin namozini o‘qib bo‘lgandik...
+U paytlari biz juda muhtasham uyda yashardik. Umarning yetti akasi, ikki opasi bor edi. Nevaralarim quchog‘imda, kelinlar xizmatimda edi. U paytlar oftob boshqacha porlab, oqshomlar o‘zgacha tarovat kasb etardi. Kunlardan bir kuni Muso poshsho uyga har kungidan erta qaytdi. Biz endi peshin namozini o‘qib bo‘lgandik…
 Go‘yo bir shamol yeldiyu, Zaynab xonimning xotira kitobini varaqladi. Balki, bu varaqlarni ko‘tarib, har yoqqa sochdi. Xonim erining o‘sha qayg‘uli kundagi holatini hozirgidek yaqqol eslaydi.
 Muso poshshoning rangi oqargan, peshonasidan reza-reza ter oqardi. Bazo‘r o‘z o‘rniga yotdi -da, tepasida unga xavotir-la qarab turgan ayoliga dedi:
 – Xonim, menga suiqasd qildilar, Sen aqlli, esli xotinsan. Dod-voy solib, faryod urganing befoyda. Xorvatiyada emas, Bosniyada emas, Belgradda emas, butun Bolqonda ulkan fitna olovini yoqmoqdalar, xonim!
@@ -920,7 +924,7 @@ Muso poshshoning rangi oqargan, peshonasidan reza-reza ter oqardi. Bazo‘r o‘
 Zaynab xonim karaxt edi. Eri alahlayotgandek gapirmoqda.
 – Alahlamayapman! – dedi Muso poshsho xuddi xotinining fikrini o‘qigandek. – Va eng muhimini yodda tutinglar! Hamisha Allohning zikrida bo‘ling. Har qanday holda ham ibodatni unutmang! Boshingizga kelajak har ishni Allohdan deb biling va taqdir ishiga isyon etmang! Zolimga bosh egmanglar, bu najotga yetaklaydi. Zolimga yolvorsangiz, xorlikka yuz tutasizlar. Guvohlik beramanki, Allohdan boshqa iloh yo‘q! Va yana guvohlik beramanki, Muhammad sollallohu alayhi va sallam Allohning bandasi va elchisidir!
 Tamom. Zabardast Muso poshshoning joni uzildi. Joni uzilishi asnosida xonaga sakkiz o‘g‘il birin-ketin shoshib kirib keldilar. Ular otalarining boshida ko‘zda yosh ila turib qoldilar.
-– O‘g‘illarim, – dedi ko‘zidagi yoshini artib Zaynab xonim. U, nihoyat, gapirishga kuch topdi. – Shunday qayg‘udamanki, tilimga na bir so‘z, dilimga na bir o‘y sig‘maydi! Biroq otangizning vasiyatini aytish bo‘ynimdagi qarz. Otangiz esini yo‘qotmadi, qo‘rqmadi, talvasaga tushmadi, mardona turib o‘limni qarshi oldi, iymon kalimasini aytib, Robbisiga qovushdi. Biroq u shunday gaplarni vasiyat etdiki, u meni juda hayron qoldirdi...
+– O‘g‘illarim, – dedi ko‘zidagi yoshini artib Zaynab xonim. U, nihoyat, gapirishga kuch topdi. – Shunday qayg‘udamanki, tilimga na bir so‘z, dilimga na bir o‘y sig‘maydi! Biroq otangizning vasiyatini aytish bo‘ynimdagi qarz. Otangiz esini yo‘qotmadi, qo‘rqmadi, talvasaga tushmadi, mardona turib o‘limni qarshi oldi, iymon kalimasini aytib, Robbisiga qovushdi. Biroq u shunday gaplarni vasiyat etdiki, u meni juda hayron qoldirdi…
 Zaynab xonim Muso poshshoning har bir so‘zini o‘g‘illariga yetkazdi. O‘g‘illar esa hayratga tushdilar.
 – Qanday qilib, otamizni hovliga dafn etamiz? – dedi to‘ng‘ichi. – Nima uchun qochishimiz kerak? Odamlarga nima uchun qochinglar, deb aytamiz? Axir, bunga asos yo‘q! Undan ko‘ra, otamizning janozalarini e’lon qilaylik!
 Umardan boshqa hamma shu fikrda edi. Umar hali o‘smir, undan hech kim: “Sen nima deysan?” – deb so‘ramadi. Zaynab xonim esa ikkilanayotgan edi:
@@ -949,7 +953,7 @@ Tovush sovuq va juda baland yangragani uchun  birdan shovqin bosildi. Muso poshs
 – Alloh Muso poshshomizdan rozi bo‘lsin!
 – Oxiratlari obod bo‘lsin!
 To‘ng‘ich o‘g‘il g‘ovur tinishini kutdi, nigohini savol beruvchidan uzmagan holda dona-dona qilib dedi:
-– Va yana... Fitna qilmanglar, fitnachining joyi – jahannam, deb vasiyat qildi otam.
+– Va yana… Fitna qilmanglar, fitnachining joyi – jahannam, deb vasiyat qildi otam.
 Dafn uchun harakat boshlanib ketdi. G‘assol keldi, kafanlikni hozirlab, jasadni yuvishga kirishdi, go‘rkov go‘r kavlagani ketdi, qorilar Qur’on o‘qiydi, ta’ziyachilar, hamdardlarning qadami uzilmaydi, butun shahar Muso poshshoning janozasiga yig‘ilib kelayotgan edi.
 Bomdoddan so‘ng, tobutni ko‘chaga chiqarib, qibla tarafga qaratib qo‘yishdi.
 Odam ko‘pligidan igna otsang, yerga tushmaydi. Hukumat odamlari, politsiya har yer, har yerda ko‘rinadi. Quyosh mashriqdan qon kabi qizarib ko‘tarilayotganda imom janoza o‘qish uchun saflarni tekislashni buyurdi.
@@ -990,8 +994,8 @@ Zaynab xonim yerto‘laga otildi. Yerto‘la ichida olov lang‘illar, tutun ham
 Zaynab xonim butun olamni unutib, alanga atrofida charx urib yugurardi.
 Bir necha daqiqada tomlar quladi, atrofni quyuk chang, qurum, tutun qopladi, nafas olish, biror narsani ko‘rish imkonsiz edi.
 Zaynab xonim kelinlarini ko‘chaga sudradi. Uyning yonishiga ma’nosiz va o‘ta horg‘in qarab o‘tirishdi. Chunki butun olamda ularga yordam beradigan hech kim qolmadi. Yordam beradigan hamma o‘lib yotibdi. Ko‘chalar o‘likka to‘ldi. Ariqlarda qonlar oqdi. Osmonni qora tutun va murda isini sezgan o‘laksaxo‘rlar egallab oldi. Muso poshsho xonadonining beva ayollari liboslari kir, yuzlari qora kuya, o‘zlari ozurdahol o‘tirardilar.
-“O‘shanda qalbimni ezgan azobning ta’rifi yo‘q, – deydi Zaynab xonim. – U og‘riqni boshdan o‘tkazmagan biror zot bila olmasa kerak. Qanday tirik qoldik – bilmayman! Alloh, Alloh deb faryod chekardimu, bo‘g‘zimdan bir sas chiqmasdi. Miyamda biror fikr, qalbimda biror tuyg‘u qolmadi, go‘yo. Aqlim hodisotlarni miyamga muhrlashdan to‘xtamaganini bilaman... Ehtimol, hamon tirikligim Robbimning bir hikmati va rahmatidir”.
-Zaynab xonim kuch topib, o‘rnidan turdi. Yer bilan yakson bo‘lgan hovlisiga qarab talpindi. Yerto‘lani topmoqchi edi. Biroq olov hamon haroratli, tafti terini kuydirgulik edi. Biroq ayolni bu to‘xtata olmadi. U issiqqa ham, kuyayotgan qo‘llariga ham, achimsiq tutunga ham parvo etmay olazarak qarab, yerto‘lani izlayotgan edi...
+“O‘shanda qalbimni ezgan azobning ta’rifi yo‘q, – deydi Zaynab xonim. – U og‘riqni boshdan o‘tkazmagan biror zot bila olmasa kerak. Qanday tirik qoldik – bilmayman! Alloh, Alloh deb faryod chekardimu, bo‘g‘zimdan bir sas chiqmasdi. Miyamda biror fikr, qalbimda biror tuyg‘u qolmadi, go‘yo. Aqlim hodisotlarni miyamga muhrlashdan to‘xtamaganini bilaman… Ehtimol, hamon tirikligim Robbimning bir hikmati va rahmatidir”.
+Zaynab xonim kuch topib, o‘rnidan turdi. Yer bilan yakson bo‘lgan hovlisiga qarab talpindi. Yerto‘lani topmoqchi edi. Biroq olov hamon haroratli, tafti terini kuydirgulik edi. Biroq ayolni bu to‘xtata olmadi. U issiqqa ham, kuyayotgan qo‘llariga ham, achimsiq tutunga ham parvo etmay olazarak qarab, yerto‘lani izlayotgan edi…
         </item>
 
         <item>
@@ -1001,7 +1005,7 @@ Xona uzunasiga to‘rt, eniga bir yarim, balandligi olti qadam chiqsa kerak. Nim
 Biroq o‘rinlarda na to‘shak, na boshqa narsa yo‘q. Temir.
 Abdulloh o‘rnidan turdi, tomog‘i qaqrabdi, boshi ham sezilar-sezilmas aylandi, eshikka yaqinlashdi.
 Xojatxona teshigidan chiqayotgan sassiqdan o‘qchidi, eshikni taqillatdi, hech kim javob bermadi. Abdulloh hayron bo‘ldi. Eshikka suyandi. Eshikning o‘rtasida to‘rt burchak darcha bor edi. Ehtimol, shu darcha ochilsa kerak.
-Abdulloh benihoya tashna bo‘lganini yana his etdi. Ayni shu payt zahar tang qildi. Xojatxonaga qaradi-da, boshqa iloji yo‘qligini bildi...
+Abdulloh benihoya tashna bo‘lganini yana his etdi. Ayni shu payt zahar tang qildi. Xojatxonaga qaradi-da, boshqa iloji yo‘qligini bildi…
 Endi o‘tirgan lahzada tashqarida xitoycha baqir-chaqir eshitildi, cho‘chib ketib, shimini yuqori ko‘tarib, tezda o‘rnidan turdiyu, “Oh!” deb yubordi, ikki kuragining o‘rtasini xojat teshigi tepasidagi quvurga urgan edi, suyak -suyagiga og‘riq tarqalib, ixrab, temir o‘ringa o‘tirib qoldi. Jarohatlangan joyini qo‘li bilan paypasladi, barmog‘i namlandi, yumshoq go‘shtga tegdi, shoshib qo‘liga qaradi: umurtqa suyagining yoni qonabdi.
 Azob zo‘ridan chanqoq ham, zahar tang ham g‘oyib bo‘ldi, xitoycha ovozlar eshikka yaqinlab keldi, sharaqa-shuruq ovozlar eshitildi, qulfga kalit urildi, shekilli, temir tamba surildi, og‘ir g‘irchillagan sasi barobarida eshik qiya ochildi, xitoybashara mirshabning qalpoqli boshi ko‘rindi, u uyg‘urchalab buyurdi:
 – Chiq! Tez bo‘l!
@@ -1084,9 +1088,9 @@ Ular bir-birlariga qarab qolishdi. Notanish tergovchi va Moyimxon ikki xitoyiga 
 – Juda jasur ekansiz! Har bir aytgan so‘zingiz uchun cheksiz uqubatlar tortasiz! Buni kafolatlayman!
 – Imkoniyat eshiklarini umrbod yopdingiz, Abdulloh bey, – dedi Moyimxon achingansimon. – O‘lguningizcha qamoqdan chiqmaysiz, deb xavotirdaman.
 – Oldindan aytib qo‘yay, – dedi Notanish. – Siz qamoqqa emas, ulkan tergovxonaga kirmoqdasiz. Bu yerda endi sizni biz kabi insofli mutaxassislar emas, o‘z otasini o‘ldirishdan toymagan manfurlar tergov qilishadi.
-... Kameraga Abdullohni qanday ur-sur qilib olib ketgan bo‘lsa, xuddi shunday holda qaytarib keltirishdi.
+… Kameraga Abdullohni qanday ur-sur qilib olib ketgan bo‘lsa, xuddi shunday holda qaytarib keltirishdi.
 Ichkari kirib, Abdullohning ko‘zi tindi, qorong‘uga ko‘zi ko‘nikib ulgurmay, kimdir uning jag‘iga musht urdi, kimdir biqiniga, kimdir qo‘lidan tortib yiqitdi. Abdullohning ovoz chiqarishga holi qolmay, g‘ujanak bo‘ldi, boshi, yelkasi, beli, oyoqlari – butun a’zoyi badaniga ayovsiz tepki yog‘ilaverdi. Bu Abdulloh hushini yo‘qotgunicha davom etdi.
-... Yuziga sepilgan suvdan Abdulloh ko‘zini ochdi. Qovurg‘asi, peshonasi, boshi,  har bir suyagi, har bir bo‘g‘imi qaqshab og‘riyotgan edi. Abdulloh turishga tirishdi, yo‘q, quvvati yetmadi, tepasida o‘ziga tikilayotgan oytovoqday ikki basharani g‘ira-shira ilg‘adi va “Kamida to‘rtta qovurg‘asi singan, tepaga ko‘tarish kerak”, – degan bo‘g‘iq ovozni elas-elas eshitdi.
+… Yuziga sepilgan suvdan Abdulloh ko‘zini ochdi. Qovurg‘asi, peshonasi, boshi,  har bir suyagi, har bir bo‘g‘imi qaqshab og‘riyotgan edi. Abdulloh turishga tirishdi, yo‘q, quvvati yetmadi, tepasida o‘ziga tikilayotgan oytovoqday ikki basharani g‘ira-shira ilg‘adi va “Kamida to‘rtta qovurg‘asi singan, tepaga ko‘tarish kerak”, – degan bo‘g‘iq ovozni elas-elas eshitdi.
 Ikki kishi Abdullohni dast ko‘tarib, o‘rinning ikkinchi qavatiga itqitdi, Abdulloh temir yuzaga “gurs” etib tushdi, qovurg‘asining singan suyaklari qirrali uchi bilan ichaklariga sanchilgandek bo‘lib, ixrab yubordi. Ixradiyu, og‘zidan oqayotgan so‘lakni ham ushlab qolishga madori yetmadi. Abdulloh shu yotgancha ko‘zlarini yumdi, yo‘q, uning joni uzilmadi, balki kun bo‘yi to kechgacha davom etgan kaltak uning bor quvvatini so‘rib olgani uchun uyqu bosib keldi.
 Bu shunday uyqu ediki, keyinchalik Abdulloh Yorqin uni: “Rahmat uyqusi”, – deb aytib yurdi.
 “As’hobi Kahf hikoyasini o‘qib, Alloh taolo mo‘minlarni uch yuz to‘qqiz yil uxlatib qo‘yganidan doim hayratlanardim. Uch asr orom uyqusida bo‘lgan yigitlar juda kam uxladik, deb o‘ylashgan, uyg‘onib shahar tushib, ne ko‘z ila ko‘rsinlarki, tavhid zamonasi ekan! Xalqning hammasi muvahhid, hammasi yakka Allohga sig‘inarkan, g‘ordagi birodarlarning yodida qolgan mudhish davr – iymon egalari qatl etiladigan, azobga solinadigan davr intiho topgan ekan. O‘shanda yigitlar g‘orga qaytib, abadiy uyquga ketadilar, Alloh ularni jannat ila mukofotladi, ularga ergashgan bir it bor edi, u ham jannatga kiradi. Alloh taolo bu qissani biz musulmonlarga ibrat o‘laroq Qur’onda bayon qildi. Vallohu a’lam, meni o‘shanda qamrab olgan uyqu as’hobi kahfga orom bergan o‘sha uyqu bo‘lsa, ne ajab! Zotan, u uyqu tanimga shifo, qalbimga sakinat, ruhimga halovat bag‘ishladi. Shunday uxlabmanki, zolimlar nima uchundir meni uyg‘otib qayta do‘pposlamadilar, uyg‘onishimni kutdilar”, – deydi Abdulloh Yorqin.
@@ -1099,8 +1103,8 @@ Bismillahga kelgandayoq Abdullohning ashki ko‘zidan toshdi, ichida to‘fon ya
 Uning butun vujudini titratayotgan iltijo shu edi.
 “Ey olamlar Robbisi! O‘zingga hamd bo‘lsin! Maqtovga faqat Sen loyiqsan! Senga ibodat qilaman! Sendangina yordam so‘rayman! Meni ne’mat etilganlarning Yo‘liga, Iymonga hidoyat et! Adashganlar, g‘azab uchraganlar yo‘lida qilma, Allohim! Buyuk sinov berding, Robbim! Bu sinovdan yorug‘ yuz ila meni chiqar! Oxiratda Senga ro‘baro‘ turganimda yuzimni qora qilajak xatolardan meni omon saqla, Allohim! Sen madad bermasang, Sen saqlamasang, na shayton hiylasiga bas kelmayman, na nafsimdan g‘olib bo‘la olmayajakman!
 Robbim, meni zolim zulmidan xalos et, ofiyatu omonlik ber! Iymonimni salomat et! Rasuling Muhammad sollallohu alayhi va sallamga munosib ummat et, Robbim!”
-... Biror soatlar o‘tib, kamera darchasidan quyoshning bir tutam nuri kirdi. Mirshablar tashqari yo‘lakda kezib, “Uyg‘on! Uyg‘on!” – deb baqira boshlashdi.
-Mahbuslar birma-bir turib, xojatga chiqishdi, yuvinishdi...
+… Biror soatlar o‘tib, kamera darchasidan quyoshning bir tutam nuri kirdi. Mirshablar tashqari yo‘lakda kezib, “Uyg‘on! Uyg‘on!” – deb baqira boshlashdi.
+Mahbuslar birma-bir turib, xojatga chiqishdi, yuvinishdi…
 Abdulloh ham qiynala-qiynala tepadan pastga tushdi, bo‘shandi, yuvindi, keyin o‘ziga baqrayib o‘tirganlar qarshisiga keldi. Ular uch kishi edi: birinchisi pakana, qoshi qalin, oqargan, tepakal, do‘rdoq lab, manglayining chap yoni tirtiqli; ikkinchisi bo‘yi baland, ozg‘in, yonog‘i yong‘oqdek turtib chiqqan, aftini cho‘tir bosgan, yelkasi tor, boshi va iyagi uch burchakni yodga soladi, umuman, turqi konus shaklida edi; uchinchisi esa yoshroq yigit, yuzi oq, qosh-ko‘zi kelishgan, o‘zi ham barvasta, biroq nigohida qandaydir beshafqatlik va behayolik ufuradi.
 – Menga qara, – deb pakana gap boshladi. – Seni bilamiz, terroristsan, bizni tanib ol: meni Aydar killer, deyishadi. Ellik yetti kishini so‘yganman, davlat bor-yo‘g‘i yigirma uchtasini biladi, qisqasi, men bilan hazillashma, gapimni ikki qilma, shu kameraning egasi menman. Manavi shunchaki, Naynov. Ismi ham shu, laqabi ham shu. Bu Olifta tirriq. Sen meni Aydar og‘a, deb, bularni esa Naynov og‘a, Olifta og‘a, deb chaqirasan. Kameraning qoidalarini bilib ol: Xudo, payg‘ambar deyish mumkinmas, duo, namoz ta’qiqlanadi. Pichirlab duo qilsang yo ishora bilan namoz o‘qisang, o‘zingdan ko‘r! Tahorat olib yurma! Yuzingni ham, og‘zingni ham, qo‘lingni ham bir marta yuvishga ruxsat. Ko‘tingni esa umuman yuvish yo‘q. Qog‘ozga artasan. Ovqatni chap qo‘lda yeysan! Yuziga fotiha tortsang, ikki qo‘lingni sindiraman, qanday tushunding?
 Abdulloh Aydarning gapini jim eshitdi, ichidan zil ketsa-da, o‘zini bosdi, titrog‘ini yengib dedi:
@@ -1116,8 +1120,8 @@ Abdullohning oyoqqa turayotganini ko‘rib, biroz kuch to‘plab olgan Naynov va
         <item>
              Zaynab xonim o‘z oilasidagi erlarning qatli haqida gapirarkan, nuroniy chehrasiga qayg‘u buluti soya soldi. Bu soya Anjelinaning ham qalbiga ko‘chib o‘tdi. Nohaq qonlari to‘kilgan maqtullar ahliga hamdardu ularni kiprik qoqmay qirgan va xonadonlarni kuydirib, xonumonlar kulini ko‘kka sovurganlar qarshisida qasoskor bo‘lib qoldi beixtiyor. Keksa xonimning hikoyasi ularni o‘tmishning qonli hududlariga yetakladi. Anjelina bu voqea tafsilotini matbuotda o‘qigan edi, marhumlarga qalbida rahmu shafqat uyg‘ongan edi, sakkiz ming qurolsiz insonning shunchaki o‘ldirib yuborilishidan, bugun anglab yetdiki, yetarlicha larzaga tushmagan ekan. Axir, begunohlarning jonini olib, qonini to‘kib, ularning ayollariga zulm qilishdan ulkanrok qabohat bormi? Bu qabohat haqida eshitib, bilib, hamdard bo‘lmaslik insofdanmi? Hamdard bo‘lsa-da, ul bechoralar himoyasi uchun bir so‘z aytishga-da qodir bo‘lmaslikdan kattaroq noinsoflik bo‘lurmi?! Nadomatlar bo‘lsinki, insoniyatning aksari o‘zgalarning iztirobi, o‘limi va fojiasidan zarra qadar g‘am chekmay qo‘ydi. Nahot, qalblar o‘lib, ruhlar so‘ndi? Nahotki, odamiylik unutildi?!
 Anjelina bu ehtiros uning ichida ilk bor to‘lqinlanganini keyinchalik eslaydi. U odamzod chekayotgan mung, e’tiqodi, dini uchun azobga mahkum etilganlar, tili, irqi va fikri uchun qatag‘on bo‘lganlarning o‘nlab, yuzlab misollari bilan yuzlashgach, betoqat holga tushdi. Ayniqsa, zulm qarshisida befarq qaraydigan toifalardan ko‘p ajablandi, o‘zi ham ularning ichida ekanligidan qo‘rqib ketdi. Yangi tuyg‘ular uning fitratan toza qalbini Haqiqat sari boshlayotgan edi. Hali chinakam Haqiqatga uchrashmoq uchun uzoq yo‘lni bosib o‘tmoq lozim. Zaynab xonim hikoyasi Haqiqatning zaif, biroq uyg‘otishga qodir sasi edi, aslida. Anjelina duch keladigan, o‘zi ham ishtirokchi bo‘ladigan yurakni tirnovchi hodisotlarni mavridi bilan o‘qiymiz, hozir esa Zaynab xonimning holatiga nazar solaylik.
-... Qonli hodisa xabari shamoldek butun dunyo bo‘ylab yeldi. Shu kun kech bo‘lmay har tarafdan yordam kela boshladi. Televideniya, radio, qirg‘in tafsilotlarini e’lon qildi, aybdorlarni topib jazolash talab etila boshlandi. Zaynab xonim esa bulardan xabarsiz, uning bu xabarlarni bilishga ham xohishi yo‘q. Vayronaga aylangan xonadoni uzra polaponidan ayrilgan burgutdek charx urdi, ko‘makka kelgan harbiylarga yerto‘laning joyini ko‘rsatdi.
-U yerda odam borligi aytilgach, bir necha o‘n kishi ishga kirishdi. Yarim soatlarda yerto‘la ochildi, behush yotgan o‘smir va bolakayni ko‘tarib chiqdilar...
+… Qonli hodisa xabari shamoldek butun dunyo bo‘ylab yeldi. Shu kun kech bo‘lmay har tarafdan yordam kela boshladi. Televideniya, radio, qirg‘in tafsilotlarini e’lon qildi, aybdorlarni topib jazolash talab etila boshlandi. Zaynab xonim esa bulardan xabarsiz, uning bu xabarlarni bilishga ham xohishi yo‘q. Vayronaga aylangan xonadoni uzra polaponidan ayrilgan burgutdek charx urdi, ko‘makka kelgan harbiylarga yerto‘laning joyini ko‘rsatdi.
+U yerda odam borligi aytilgach, bir necha o‘n kishi ishga kirishdi. Yarim soatlarda yerto‘la ochildi, behush yotgan o‘smir va bolakayni ko‘tarib chiqdilar…
 Shu tundayoq butun Bolqon yig‘i va o‘q ovozlariga to‘ldi. Ko‘miladigan murdalarning sanog‘i ko‘rinmasdi. Qarindoshi, yoru birodari o‘ldirilgan har kim qasos o‘tida yonardi. Voqeaning asl sabablari haqida tahlilchilar, siyosatchilar tinimsiz gapirishdi. Muso poshsho bolalariga, xotiniga quyidagi voqeani aytib ulgurmagan edi: Oxirgi bir yilda onda-sonda har xil qotilliklar haqida noxush xabarlar tarqaldi. Matbuotda tashvishli maqolalar e’lon etildi, biroq ko‘pchilik holatni butunicha idrok etmayotgandi. Muso poshsho ba’zi nasroniylar va musulmonlarning orasida ro‘y berayotgan ziddiyatlardan xavotirga tushdi. Na hukumat, na boshqa biror kuch bu ziddiyatni yechish haqida o‘ylamas edi. Muso poshshoning fikricha, millatchilik adovatidan ko‘ra diniy adovat xatarliroq. Yerli musulmonlarga provaslav hamda katolik cherkovi peshvolari: “Ota-bobolaringiz bosqinchi turklarga dinini, yurtini sotgan, sizlar xoinlar avlodisiz, aslingizga qayting! Nasroniy bo‘ling!” mazmunida oshkora sha’ma qilishga o‘tdilar. Masjidlarda esa bu sha’malarga nisbatan og‘irroq kinoyalar yangradi. Muso poshsho bu fitnaning ildizi chuqurligini angladi. Cherkov peshvosi yoxud masjid imomi o‘z fikridan, tuyg‘usidan kelib chiqib, g‘ayridinni tahqirlamaydi, musulmonlar qudratli Turk sultonlari davrida g‘ayridinlarni besabab chertgan emas. Nasroniy va yahudiylar ham shunga muqobil darajada adabli edilar. Muso poshsho fitna ildizini topishga qat’iy qaror qildi, shogird va yordamchilariga cherkov ruhoniylarini kuzatishni buyurdi. U ishning boshida turganlar kimligini shu yo‘l bilan aniqlayman, deb o‘yladi. Hukumatdagi tanishlarini yuzaga kelayotgan xavf haqida ogohlantirdi.
 – Ortiqcha xavotirga tushyapsiz, – dedi hudud hokimining yordamchisi. – Mavjud bo‘lmagan xatar haqida gapiryapsiz.
 Muso poshshoning odamlari cherkovning xorijliklar notanishlar bilan bir marta uchrashgani haqida xabar keltirishdi. Xorijliklar deb aytilgan kishilar esa Amerikadagi noma’lum guruhlar bilan shubhali tijorat qilishlarini bilgach, Muso poshshoning shubhasi kuchaydi, u Bolqonda qandaydir larzaga hozirlik ko‘rilayotganini tushundi. Aynan qanday reja uchun tayyorgarlik ko‘rilayotgani uning uchun hamon mavhum edi. Oxirgi vaqtlarda uch-to‘rt marta nasroniy va musulmonlar o‘rtasida janjal chiqdi, ba’zi mahalliy urug‘lar ham bir-birini ko‘p marta haqoratladi. Masala haqida uzil-kesil xulosaga kelish uchun Muso poshsho cherkovga ta’sir o‘tkazishga urinayotgan guruhning shahar tashqarisidagi manziliga yo‘l oldi. Daryo yoqasi bo‘ylab minglab tanob hududga yoyilgan o‘rmonda ajib tarovat va sehr bor. Tog‘ bag‘ridagi daraxtlar o‘rmonning cho‘qqiga uzangan qo‘lini eslatadi. Muazzam daraxtzorning ichiga qadam bosish ko‘pchilikka qiziq emas, chunki adashib qolish o‘lim bilan barobar. Muso poshsho esa o‘rmon ichidagi ko‘l yoqasida joylashgan pinhona qarorgohga yetib bordi. Qarorgoh behad muhtasham, o‘z sohibining qudratini ko‘z-ko‘z qiladi. Baland devorlar, har tomonni tasvirga muhrlayotgan “ko‘zlar”, o‘nlab devqomat va xo‘mraygan, qurolli soqchilar bu makonni sirli, qo‘rqinchli ko‘rsatadi. Muso poshsho darvoza qo‘riqchisiga shaxd bilan gapirdi:
