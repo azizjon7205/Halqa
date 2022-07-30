@@ -16,6 +16,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="26sp"
+                android:layout_marginTop="10dp"
                 android:gravity="center_vertical"
                 android:fontFamily="@font/poppins"
                 android:textColor="@color/black"
