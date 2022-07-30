@@ -56,16 +56,8 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
     private fun refreshAdapter() {
         val items = appDatabase.halqaDao().getPosts(HALQA) as ArrayList<Halqa>
         adapter = AudioBookAdapter( object : OnItemClickListner{
-        val adapter = AudioBookAdapter(this, items, object : OnItemClickListner{
             override fun onItemDownload(halqa: Halqa) {
                 downloadFile(halqa)
-
-                audioDownloadReceiver.onDownloadCompleted = {
-                    appDatabase.halqaDao().updatePost(true, halqa.id!!)
-                    val items = appDatabase.halqaDao().getPosts(HALQA) as ArrayList<Halqa>
-
-                    adapter.submitList(items)
-                }
             }
 
             override fun onItemPlay(fileName: String, audioName: String) {
@@ -77,7 +69,6 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
 
                 Log.d("TAG", "onItemPlay: ${mediaPlayer.duration}")
             }
-        })
         })
 
         adapter.submitList(items)
@@ -102,7 +93,14 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
             requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val downloadID = downloadManager.enqueue(request)
         appDatabase.halqaDao().updatePost(true, halqa.id!!)
-        refreshAdapter()
+
+        audioDownloadReceiver.onDownloadCompleted = {
+
+            appDatabase.halqaDao().updatePost(true, halqa.id!!)
+            val items = appDatabase.halqaDao().getPosts(HALQA) as ArrayList<Halqa>
+
+            adapter.submitList(items)
+        }
 
     }
 }

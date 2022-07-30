@@ -10,6 +10,8 @@ class AudioDownloadReceiver : BroadcastReceiver() {
     lateinit var onDownloadCompleted: (() -> Unit)
 
     override fun onReceive(p0: Context?, p1: Intent?) {
+
         onDownloadCompleted.invoke()
+
     }
 }

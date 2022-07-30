@@ -27,12 +27,13 @@ class AudioBookAdapter(private var onItemClickListner: OnItemClickListner) :
         when(holder){
             is ViewHolder.ItemBookChapter ->{
                 holder.view.apply {
+
                     tvBob.text = item.bob
 
                     if (item.isDownload){
                         ivPlay.setImageResource(R.drawable.ic_play)
                     }else{
-
+                        ivPlay.setImageResource(R.drawable.ic_download)
                     }
 
                     ivPlay.setOnClickListener {
