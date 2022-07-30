@@ -7,32 +7,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.fragment.HalqaAudioFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBar"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@android:color/transparent"
-        android:paddingVertical="10dp"
-        android:elevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="?actionBarSize"
             android:elevation="0dp"
             android:background="@android:color/transparent">
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:layout_height="match_parent"
+                android:textSize="26sp"
+                android:gravity="center_vertical"
                 android:fontFamily="@font/poppins"
                 android:textColor="@color/black"
-                android:text="Halqa (Audio)"/>
+                android:text="Audio Kitoblar"/>
         </androidx.appcompat.widget.Toolbar>
 
-    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
