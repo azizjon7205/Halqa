@@ -1,7 +1,7 @@
 package com.example.halqa
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.halqa.databinding.ActivityMainBinding
