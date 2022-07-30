@@ -2,15 +2,18 @@ package com.example.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.halqa.R
 import com.example.halqa.databinding.FragmentCategoryBinding
+import com.example.utils.Constants.HALQA
+import com.example.utils.Constants.JANGCHI
 
 class CategoryFragment : Fragment(R.layout.fragment_category) {
     private val binding by viewBinding(FragmentCategoryBinding::bind)
-    lateinit var language:String
+    lateinit var language: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +27,8 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
         initViews()
     }
 
-    private fun initViews(){
-        when(language){
+    private fun initViews() {
+        when (language) {
             getString(R.string.language_latin) -> {
                 binding.ivBook1.setImageResource(R.drawable.im_halqa_pdf_latin)
                 binding.ivBook2.setImageResource(R.drawable.im_jangchi_pdf_latin)
@@ -35,9 +38,11 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
                 binding.ivBook6.setImageResource(R.drawable.im_jangchi_audio_2_latin)
 
                 binding.mcv1.setOnClickListener {
-                    val bundle = Bundle()
-                    bundle.putString("language", getString(R.string.language_latin))
-                    findNavController().navigate(R.id.action_categoryFragment_to_bookFragment,bundle)
+
+                    findNavController().navigate(
+                        R.id.action_categoryFragment_to_bookFragment,
+                        bundleOf("language" to getString(R.string.language_latin))
+                    )
                 }
             }
             getString(R.string.language_krill) -> {
@@ -49,15 +54,22 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
                 binding.ivBook6.setImageResource(R.drawable.im_jangchi_audio_2_latin)
 
                 binding.mcv1.setOnClickListener {
-                    val bundle = Bundle()
-                    bundle.putString("language", getString(R.string.language_krill))
-                    findNavController().navigate(R.id.action_categoryFragment_to_bookFragment,bundle)
+                    findNavController().navigate(
+                        R.id.action_categoryFragment_to_bookFragment,
+                        bundleOf("language" to getString(R.string.language_krill))
+                    )
                 }
             }
         }
 
         binding.ivBook3.setOnClickListener {
-            findNavController().navigate(R.id.action_categoryFragment_to_halqaAudioFragment)
+            findNavController().navigate(R.id.action_categoryFragment_to_halqaAudioFragment,
+                bundleOf("audio" to HALQA))
+        }
+
+        binding.ivBook4.setOnClickListener {
+            findNavController().navigate(R.id.action_categoryFragment_to_halqaAudioFragment,
+                bundleOf("audio" to JANGCHI))
         }
     }
 }
