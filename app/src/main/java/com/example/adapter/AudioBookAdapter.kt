@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fragment.HalqaAudioFragment
 import com.example.halqa.R
 import com.example.halqa.databinding.ItemAudioBookBinding
+import com.example.helper.OnItemClickListner
 import com.example.model.Halqa
 
-class AudioBookAdapter(var fragment: HalqaAudioFragment, var items: ArrayList<Halqa>, private var onItemClick: ((Halqa) -> Unit)) :
+class AudioBookAdapter(var fragment: HalqaAudioFragment, var items: ArrayList<Halqa>, private var onItemClickListner: OnItemClickListner) :
     RecyclerView.Adapter<AudioBookAdapter.AudioBookViewHolder>() {
 
     override fun getItemCount(): Int {
@@ -43,9 +44,11 @@ class AudioBookAdapter(var fragment: HalqaAudioFragment, var items: ArrayList<Ha
                 }
 
                 ivPlay.setOnClickListener {
-                    //fragment.downloadAudio(item.url)
-                   // fragment.downloadFile(item.url, adapterPosition)
-                    onItemClick(item)
+                   if (item.isDownload){
+                       onItemClickListner.onItemPlay(item.bookName, "${item.bookName}${item.bob}.mp3")
+                   }else{
+                       onItemClickListner.onItemDownload(item)
+                   }
                 }
             }
         }

@@ -13,6 +13,7 @@ import com.example.adapter.AudioBookAdapter
 import com.example.database.AppDatabase
 import com.example.halqa.R
 import com.example.halqa.databinding.FragmentHalqaAudioBinding
+import com.example.helper.OnItemClickListner
 import com.example.model.Halqa
 import com.example.utils.Constants.HALQA
 import java.io.File
@@ -34,9 +35,17 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio) {
 
     fun refreshAdapter() {
         val items = appDatabase.halqaDao().getPosts(HALQA) as ArrayList<Halqa>
-        val adapter = AudioBookAdapter(this, items){
-            downloadFile(it)
-        }
+        val adapter = AudioBookAdapter(this, items, object : OnItemClickListner{
+            override fun onItemDownload(halqa: Halqa) {
+                downloadFile(halqa)
+            }
+
+            override fun onItemPlay(fileName: String, audioName: String) {
+
+            }
+
+
+        })
         binding.recyclerView.adapter = adapter
     }
 
