@@ -12,7 +12,7 @@
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
 
-    <string-array name="chapters">
+    <string-array name="chapters_halqa_latin">
         <item>BIRINCHI BOB
 BRITANIYALIK JURNALISTLAR
         </item>
@@ -211,7 +211,7 @@ MUALLIF SHUKRONASI
 
     </string-array>
 
-    <string-array name="text_of_chapters">
+    <string-array name="text_of_chapters_halqa_latin">
         <item>
             … Hind ummonidan suzib borayotgan kemaning nomi “Urvatul vusqo” bo‘lib, yo‘lovchilar bu kemaga Indoneziya bandargohidan chiqib, Saudiya sohillarida tuproqqa tushadilar.
 Musulmon shirkatiga tegishlik kema ming nafar yo‘lovchini sig‘diradi. Ular ichida har toifa insonlarni uchratish mumkin. Biroq kemaning qat’iy qoidasi bor: unda islomiy axloq hukm suradi. Kemaga chiqishdan avvalroq – chipta sotib olishdayoq bu qoida har bir insonga tushuntiriladi. Ochiq kiyinish, ajnabiy musiqalar tinglash, behayo odatlar ta’qiqlangan. Sarxush qiluvchi ichimliklar ichilmaydi, tamaki chekilmaydi. Kemaning ichida ham ixchamroq masjid bor. Bo‘lmalari har bir oila uchun alohida.

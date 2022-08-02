@@ -38,8 +38,8 @@ class BookFragment : Fragment(R.layout.fragment_book) {
     private fun initViews() {
 
         bookAdapter = BookAdapter(
-            resources.getStringArray(R.array.chapters).toList(),
-            resources.getStringArray(R.array.text_of_chapters).toList()
+            resources.getStringArray(R.array.chapters_halqa_latin).toList(),
+            resources.getStringArray(R.array.text_of_chapters_halqa_latin).toList()
         )
 
         binding.apply {
@@ -59,7 +59,7 @@ class BookFragment : Fragment(R.layout.fragment_book) {
                 sharedPref.saveLastPageNumber(KEY, viewPager.currentItem)
             }
 
-            adapter.submitList(resources.getStringArray(R.array.chapters).toList())
+            adapter.submitList(resources.getStringArray(R.array.chapters_halqa_latin).toList())
 
             recyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
