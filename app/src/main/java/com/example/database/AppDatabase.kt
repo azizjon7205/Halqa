@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.model.Halqa
 
-@Database(entities = [Halqa::class], version = 1)
+@Database(entities = [Halqa::class], version = 4)
 abstract class AppDatabase: RoomDatabase(){
     abstract fun halqaDao(): HalqaDao
 

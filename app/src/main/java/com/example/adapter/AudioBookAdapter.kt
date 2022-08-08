@@ -2,78 +2,110 @@ package com.example.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.example.halqa.R
 import com.example.halqa.databinding.ItemAudioBookBinding
-import com.example.helper.OnItemClickListner
+import com.example.helper.OnItemClickListener
 import com.example.model.Halqa
+import com.example.utils.Constants
+import com.example.utils.hide
+import com.example.utils.show
+import kotlin.math.log
 
-class AudioBookAdapter(private var onItemClickListner: OnItemClickListner) :
-    ListAdapter<Halqa, RecyclerView.ViewHolder>(DiffUtil()) {
+class AudioBookAdapter(private val onItemClickListener: OnItemClickListener) :
+    RecyclerView.Adapter<AudioBookAdapter.VH>() {
 
-    override fun getItemViewType(position: Int): Int {
-        return position
-    }
+    private val audioList: ArrayList<Halqa> = arrayListOf()
+    private var selectedAudioPosition = -1
+    private var lastAudioSelectedPosition = -1
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder.ItemBookChapter {
-        val view = ItemAudioBookBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder.ItemBookChapter(view)
-    }
+    inner class VH(val binding: ItemAudioBookBinding) : RecyclerView.ViewHolder(binding.root)
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = getItem(position)
-        when (holder) {
-            is ViewHolder.ItemBookChapter -> {
-                holder.view.apply {
-                    progress.visibility = View.GONE
-                    audioName.text = item.bookName
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH = VH(
+        ItemAudioBookBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
+    )
 
-                    tvBob.text = item.bob
+    override fun onBindViewHolder(holder: VH, position: Int) {
 
-                    if (item.isDownload) {
-                        ivPlay.setImageResource(R.drawable.ic_play)
-                    } else {
-                        ivPlay.setImageResource(R.drawable.ic_download)
-                    }
+        holder.binding.apply {
+            val audio = audioList[position]
+            Log.d("TAG", "onBindViewHolder: $audio")
+            tvBob.text = audio.bob
 
-                    ivPlay.setOnClickListener {
-                        if (item.isDownload){
-                            Log.d("TAG", "onBindViewHolder: ")
-                            onItemClickListner.onItemPlay(item.bookName, "${item.bookName}${item.bob}.mp3")
-                        }else{
-                            progress.visibility = View.VISIBLE
-                        if (item.isDownload) {
-                            onItemClickListner.onItemPlay(
-                                item.bookName,
-                                "${item.bookName}${item.bob}.mp3",
-                                seekBar,
-                                tvSecond
-                            )
-                            llSeek.visibility = View.VISIBLE
+            if (audio.isDownload) {
+                if (audio.isPlaying) {
+                    ivPlay.setImageResource(R.drawable.ic_pause)
+                    llSeek.show()
+                } else {
+                    ivPlay.setImageResource(R.drawable.ic_play)
+                    llSeek.hide()
+                }
+            } else ivPlay.setImageResource(R.drawable.ic_download)
+
+            ivPlay.setOnClickListener {
+                when (audio.isDownload) {
+                    true -> {
+                        lastAudioSelectedPosition = selectedAudioPosition
+                        selectedAudioPosition = holder.absoluteAdapterPosition
+
+                        if (audio.isPlaying) {
+                            ivPlay.setImageResource(R.drawable.ic_pause)
+                            llSeek.show()
                         } else {
-                            onItemClickListner.onItemDownload(item)
+                            ivPlay.setImageResource(R.drawable.ic_play)
+                            llSeek.hide()
                         }
+
+                        onItemClickListener.onItemPlay(
+                            "${Constants.HALQAKITOB}/${audio.bookName}/${audio.bookName}${audio.bob}.mp3",
+                            seekBar,
+                            llSeek,
+                            tvFullDuration,
+                            tvPassedDuration,
+                            lastAudioSelectedPosition,
+                            selectedAudioPosition,
+                            audio
+                        )
+                    }
+                    false -> {
+                        onItemClickListener.onItemDownload(audio, position)
                     }
                 }
             }
         }
     }
 
-    class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<Halqa>() {
-        override fun areItemsTheSame(oldItem: Halqa, newItem: Halqa): Boolean {
-            return oldItem.id == newItem.id
-        }
+    override fun getItemCount(): Int = audioList.size
 
-        override fun areContentsTheSame(oldItem: Halqa, newItem: Halqa): Boolean {
-            return oldItem == newItem
-        }
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
     }
 
-    sealed class ViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
-        class ItemBookChapter(val view: ItemAudioBookBinding) : ViewHolder(view)
+    fun submitList(audioList: List<Halqa>) {
+        this.audioList.addAll(audioList)
+    }
+
+    fun updateAudioPlayStatus(position: Int) {
+        if (position == -1)
+            return
+        audioList[position].isPlaying = !audioList[position].isPlaying
+        notifyItemChanged(position)
+    }
+
+    fun updateAudioDownloadStatus(position: Int) {
+        this.audioList[position].isDownload = true
+        notifyItemChanged(position)
+    }
+
+    fun changeCurrentPlayingAudio(position: Int) {
+        this.selectedAudioPosition = position
+    }
+
+
+    fun changeLastPlayingAudio(position: Int) {
+        this.lastAudioSelectedPosition = position
     }
 }

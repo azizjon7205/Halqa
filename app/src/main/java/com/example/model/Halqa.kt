@@ -7,8 +7,9 @@ import androidx.room.PrimaryKey
 data class Halqa(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
-    var bob:String,
+    var bob: String,
     var bookName: String,
     var url: String,
-    var isDownload: Boolean = false
+    var isDownload: Boolean = false,
+    var isPlaying: Boolean = false
 )
