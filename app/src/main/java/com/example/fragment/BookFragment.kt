@@ -10,21 +10,27 @@ import com.example.adapter.BookAdapter
 import com.example.adapter.MenuAdapter
 import com.example.halqa.R
 import com.example.halqa.databinding.FragmentBookBinding
+import com.example.utils.Constants
+import com.example.utils.Constants.BOOK
+import com.example.utils.Constants.JANGCHI
 import com.example.utils.Constants.KEY
+import com.example.utils.Constants.LANGUAGE
 import com.example.utils.SharedPref
 
 class BookFragment : Fragment(R.layout.fragment_book) {
+
     private val binding by viewBinding(FragmentBookBinding::bind)
-    lateinit var language: String
+    private lateinit var language: String
+    private lateinit var book: String
     private lateinit var adapter: MenuAdapter
-    private lateinit var bookAdapter: BookAdapter
 
     private lateinit var sharedPref: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            language = it.getString("language")!!
+            language = it.getString(LANGUAGE)!!
+            book = it.getString(BOOK)!!
         }
 
         sharedPref = SharedPref(requireContext())
@@ -37,13 +43,9 @@ class BookFragment : Fragment(R.layout.fragment_book) {
 
     private fun initViews() {
 
-        bookAdapter = BookAdapter(
-            resources.getStringArray(R.array.chapters_halqa_latin).toList(),
-            resources.getStringArray(R.array.text_of_chapters_halqa_latin).toList()
-        )
 
         binding.apply {
-            viewPager.adapter = bookAdapter
+            viewPager.adapter = getRequiredAdapter()
 
             viewPager.setCurrentItem(sharedPref.getLastPageNumber(KEY), false)
 
@@ -59,7 +61,7 @@ class BookFragment : Fragment(R.layout.fragment_book) {
                 sharedPref.saveLastPageNumber(KEY, viewPager.currentItem)
             }
 
-            adapter.submitList(resources.getStringArray(R.array.chapters_halqa_latin).toList())
+            adapter.submitList(getRequiredChapterAdapter())
 
             recyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -67,6 +69,60 @@ class BookFragment : Fragment(R.layout.fragment_book) {
 
             ivBack.setOnClickListener {
                 requireActivity().onBackPressed()
+            }
+        }
+    }
+
+    private fun getRequiredChapterAdapter(): List<String> {
+        if (language == getString(R.string.language_latin)) {
+            //latin
+            return if (book == JANGCHI) {
+                //jangchi
+                resources.getStringArray(R.array.chapters_jangchi_latin).toList()
+            } else {
+                //Halqa
+                resources.getStringArray(R.array.chapters_halqa_latin).toList()
+            }
+        } else {
+            return if (book == JANGCHI) {
+                //jangchi
+                resources.getStringArray(R.array.chapter_jangchi_crill).toList()
+            } else {
+                //Halqa
+                resources.getStringArray(R.array.chapters_halqa_crill).toList()
+            }
+        }
+    }
+
+    private fun getRequiredAdapter(): BookAdapter {
+        if (language == getString(R.string.language_latin)) {
+            //latin
+            return if (book == JANGCHI) {
+                //jangchi
+                BookAdapter(
+                    resources.getStringArray(R.array.chapters_jangchi_latin).toList(),
+                    resources.getStringArray(R.array.text_of_chapters_jangchi_latin).toList()
+                )
+            } else {
+                //Halqa
+                BookAdapter(
+                    resources.getStringArray(R.array.chapters_halqa_latin).toList(),
+                    resources.getStringArray(R.array.text_of_chapters_halqa_latin).toList()
+                )
+            }
+        } else {
+            return if (book == JANGCHI) {
+                //jangchi
+                BookAdapter(
+                    resources.getStringArray(R.array.chapter_jangchi_crill).toList(),
+                    resources.getStringArray(R.array.text_of_chapters_jangchi_crill).toList()
+                )
+            } else {
+                //Halqa
+                BookAdapter(
+                    resources.getStringArray(R.array.chapters_halqa_crill).toList(),
+                    resources.getStringArray(R.array.text_of_chapters_halqa_crill).toList()
+                )
             }
         }
     }

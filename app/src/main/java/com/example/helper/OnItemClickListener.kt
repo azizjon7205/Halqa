@@ -3,11 +3,11 @@ package com.example.helper
 import android.widget.LinearLayout
 import android.widget.SeekBar
 import android.widget.TextView
-import com.example.model.Halqa
+import com.example.model.BookData
 
 interface OnItemClickListener {
 
-    fun onItemDownload(halqa: Halqa, position: Int)
+    fun onItemDownload(halqa: BookData, position: Int)
 
     fun onItemPlay(
         audioPath: String,
@@ -17,6 +17,6 @@ interface OnItemClickListener {
         tvPassedDuration: TextView,
         lastAudioPlaying: Int,
         position: Int,
-        halqa: Halqa
+        halqa: BookData
     )
 }

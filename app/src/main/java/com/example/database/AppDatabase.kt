@@ -4,11 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.model.Halqa
+import com.example.model.BookData
 
-@Database(entities = [Halqa::class], version = 4)
+@Database(entities = [BookData::class], version = 4)
 abstract class AppDatabase: RoomDatabase(){
-    abstract fun halqaDao(): HalqaDao
+    abstract fun bookDao(): BookDao
 
     companion object{
         private var instance: AppDatabase? = null

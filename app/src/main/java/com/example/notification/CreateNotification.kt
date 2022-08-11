@@ -7,12 +7,12 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.session.MediaSession
 import android.os.Build
-import android.support.v4.media.session.MediaSessionCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.halqa.R
-import com.example.model.Halqa
+import com.example.model.BookData
 import com.example.receiver.NotificationActionService
 import com.example.utils.Constants.AUTHOR
+import com.example.utils.Constants.JANGCHI
 
 object CreateNotification {
 
@@ -26,7 +26,7 @@ object CreateNotification {
 
     fun createNotification(
         context: Context,
-        halqa: Halqa,
+        bookData: BookData,
         playButton: Int,
         position: Int,
         size: Int
@@ -76,16 +76,18 @@ object CreateNotification {
                 )
             }
 
+            val bookPhoto =
+                if (bookData.bookName == JANGCHI) R.drawable.jangchi else R.drawable.halqa_image
             notification = Notification
                 .Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.halqamain_notification)
-                .setContentTitle(halqa.bob)
+                .setContentTitle("${bookData.bookName} ${bookData.bob}")
                 .setContentText(AUTHOR)
                 .setOnlyAlertOnce(true)
                 .setLargeIcon(
                     BitmapFactory.decodeResource(
                         context.resources,
-                        R.drawable.img
+                        bookPhoto
                     )
                 )
                 .setShowWhen(false)

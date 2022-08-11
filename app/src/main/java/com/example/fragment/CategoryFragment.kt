@@ -8,8 +8,11 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.halqa.R
 import com.example.halqa.databinding.FragmentCategoryBinding
+import com.example.utils.Constants.AUDIO
+import com.example.utils.Constants.BOOK
 import com.example.utils.Constants.HALQA
 import com.example.utils.Constants.JANGCHI
+import com.example.utils.Constants.LANGUAGE
 
 class CategoryFragment : Fragment(R.layout.fragment_category) {
     private val binding by viewBinding(FragmentCategoryBinding::bind)
@@ -18,7 +21,7 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            language = it.getString("language")!!
+            language = it.getString(LANGUAGE)!!
         }
     }
 
@@ -28,48 +31,39 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
     }
 
     private fun initViews() {
-        when (language) {
-            getString(R.string.language_latin) -> {
-                binding.ivBook1.setImageResource(R.drawable.im_halqa_pdf_latin)
-                binding.ivBook2.setImageResource(R.drawable.im_jangchi_pdf_latin)
-                binding.ivBook3.setImageResource(R.drawable.im_halqa_audio_1_latin)
-                binding.ivBook4.setImageResource(R.drawable.im_jangchi_audio_1_latin)
-                binding.ivBook5.setImageResource(R.drawable.im_halqa_audio_1_latin)
-                binding.ivBook6.setImageResource(R.drawable.im_jangchi_audio_2_latin)
-
-                binding.mcv1.setOnClickListener {
-
-                    findNavController().navigate(
-                        R.id.action_categoryFragment_to_bookFragment,
-                        bundleOf("language" to getString(R.string.language_latin))
-                    )
-                }
-            }
-            getString(R.string.language_krill) -> {
-                binding.ivBook1.setImageResource(R.drawable.im_halqa_pdf_krill)
-                binding.ivBook2.setImageResource(R.drawable.im_jangchi_pdf_krill)
-                binding.ivBook3.setImageResource(R.drawable.im_halqa_audio_1_latin)
-                binding.ivBook4.setImageResource(R.drawable.im_jangchi_audio_1_latin)
-                binding.ivBook5.setImageResource(R.drawable.im_halqa_audio_1_latin)
-                binding.ivBook6.setImageResource(R.drawable.im_jangchi_audio_2_latin)
-
-                binding.mcv1.setOnClickListener {
-                    findNavController().navigate(
-                        R.id.action_categoryFragment_to_bookFragment,
-                        bundleOf("language" to getString(R.string.language_krill))
-                    )
-                }
-            }
+        if (language == getString(R.string.language_krill)) {
+            binding.ivBookHalqa.setImageResource(R.drawable.im_halqa_pdf_krill)
+            binding.ivBookJangchi.setImageResource(R.drawable.im_jangchi_pdf_krill)
         }
 
-        binding.ivBook3.setOnClickListener {
-            findNavController().navigate(R.id.action_categoryFragment_to_halqaAudioFragment,
-                bundleOf("audio" to HALQA))
-        }
+        binding.apply {
+            halqaWrapper.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_categoryFragment_to_bookFragment,
+                    bundleOf(LANGUAGE to language, BOOK to HALQA)
+                )
+            }
 
-        binding.ivBook4.setOnClickListener {
-            findNavController().navigate(R.id.action_categoryFragment_to_halqaAudioFragment,
-                bundleOf("audio" to JANGCHI))
+            jangchiWrapper.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_categoryFragment_to_bookFragment,
+                    bundleOf(LANGUAGE to language, BOOK to JANGCHI)
+                )
+            }
+
+            halqaAudioAbdukarimMWrapper.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_categoryFragment_to_halqaAudioFragment,
+                    bundleOf(AUDIO to HALQA)
+                )
+            }
+
+            jangchiAudioAbdukarimMWrapper.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_categoryFragment_to_halqaAudioFragment,
+                    bundleOf(AUDIO to JANGCHI)
+                )
+            }
         }
     }
 }
