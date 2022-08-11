@@ -18,7 +18,6 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.SeekBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
@@ -30,21 +29,24 @@ import com.example.halqa.R
 import com.example.halqa.databinding.FragmentHalqaAudioBinding
 import com.example.helper.OnItemClickListener
 import com.example.helper.Playable
-import com.example.model.Halqa
+import com.example.model.BookData
 import com.example.notification.CreateNotification
 import com.example.receiver.AudioDownloadReceiver
 import com.example.service.MusicService
 import com.example.utils.Constants
 import com.example.utils.Constants.ACTION_NAME
+import com.example.utils.Constants.AUDIO
+import com.example.utils.Constants.BOOK_EXTRA
 import com.example.utils.Constants.HALQA
+import com.example.utils.Constants.JANGCHI
 import java.io.File
 
 
 class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
 
     private val binding by viewBinding(FragmentHalqaAudioBinding::bind)
-    private var appDatabase: AppDatabase? = null
 
+    private var appDatabase: AppDatabase? = null
     private lateinit var book: String
     var filePath = ""
     var currentPosition: Int = 0
@@ -55,15 +57,15 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
     private lateinit var adapter: AudioBookAdapter
     private lateinit var audioDownloadReceiver: AudioDownloadReceiver
     private lateinit var notificationManager: NotificationManager
-    private lateinit var audios: List<Halqa>
+    private lateinit var audios: List<BookData>
     private var isPlaying = false
-    private lateinit var lastPlayingHalqaChapter: Halqa
+    private lateinit var lastPlayingChapter: BookData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            book = it.getString("audio")!!
+            book = it.getString(AUDIO)!!
         }
     }
 
@@ -71,10 +73,9 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
         super.onViewCreated(view, savedInstanceState)
         appDatabase = AppDatabase.getInstance(requireContext())
         audioDownloadReceiver = AudioDownloadReceiver()
-        requireActivity().registerReceiver(
-            audioDownloadReceiver,
-            IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
-        )
+
+        registerDownloadBroadcast()
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createChannel()
@@ -82,10 +83,24 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
             requireActivity().stopService(Intent(requireContext(), MusicService::class.java))
         }
 
-        appDatabase?.halqaDao()?.getPosts(HALQA)?.observe(viewLifecycleOwner) {
-            audios = it
-            initViews()
+        if (book == HALQA)
+            appDatabase?.bookDao()?.getPosts(HALQA)?.observe(viewLifecycleOwner) {
+                audios = it
+                initViews()
+            }
+        else {
+            appDatabase?.bookDao()?.getPosts(JANGCHI)?.observe(viewLifecycleOwner) {
+                audios = it
+                initViews()
+            }
         }
+    }
+
+    private fun registerDownloadBroadcast() {
+        requireActivity().registerReceiver(
+            audioDownloadReceiver,
+            IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
+        )
     }
 
     override fun onDestroyView() {
@@ -102,9 +117,9 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
                 CreateNotification.ACTION_PLAY -> {
                     isPlaying = !isPlaying
                     if (isPlaying) {
-                        onTrackPlay(lastPlayingHalqaChapter)
+                        onTrackPlay(lastPlayingChapter)
                     } else {
-                        onTrackPause(lastPlayingHalqaChapter)
+                        onTrackPause(lastPlayingChapter)
                     }
                 }
 
@@ -113,31 +128,35 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
         }
     }
 
-    override fun onTrackPrevious(halqa: Halqa) {
+    override fun onTrackPrevious(bookData: BookData) {
         position--
 
         if (checkPositionValidity(position)) {
-            manageNotificationWithAdapter(position)
-            CreateNotification.createNotification(
-                requireActivity(),
-                halqa,
-                R.drawable.ic_play_notif,
-                position,
-                audios.size - 1
-            )
-            resetPlayer()
-            playSource(getAudioPath(audios[position]))
-            lastPlayingHalqaChapter = audios[position]
+            val audio = audios[position]
+            if (audio.isDownload) {
+                manageNotificationWithAdapter(position)
+                CreateNotification.createNotification(
+                    requireActivity(),
+                    bookData,
+                    R.drawable.ic_play_notif,
+                    position,
+                    audios.size - 1
+                )
+                resetPlayer()
+                playSource(getAudioPath(audio))
+                lastPlayingChapter = audio
+            } else {
+                downloadFile(bookData, position)
+            }
         } else {
             position = 0
         }
     }
 
-    override fun onTrackPlay(halqa: Halqa) {
-        Log.d("TAG", "onTrackPlay: $halqa")
+    override fun onTrackPlay(bookData: BookData) {
         CreateNotification.createNotification(
             requireActivity(),
-            halqa,
+            bookData,
             R.drawable.ic_pause_notif,
             position,
             audios.size - 1
@@ -146,11 +165,10 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
         isPlaying = mediaPlayer.isPlaying
     }
 
-    override fun onTrackPause(halqa: Halqa) {
-        Log.d("TAG", "onTrackPause: $halqa")
+    override fun onTrackPause(bookData: BookData) {
         CreateNotification.createNotification(
             requireActivity(),
-            halqa,
+            bookData,
             R.drawable.ic_play_notif,
             position,
             audios.size - 1
@@ -159,26 +177,31 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
         isPlaying = mediaPlayer.isPlaying
     }
 
-    override fun onTrackNext(halqa: Halqa) {
+    override fun onTrackNext(bookData: BookData) {
         position++
         if (checkPositionValidity(position)) {
-            manageNotificationWithAdapter(position)
-            CreateNotification.createNotification(
-                requireActivity(),
-                halqa,
-                R.drawable.ic_pause_notif,
-                position,
-                audios.size - 1
-            )
-            resetPlayer()
-            playSource(getAudioPath(audios[position]))
-            lastPlayingHalqaChapter = audios[position]
+            val audio = audios[position]
+            if (audio.isDownload) {
+                manageNotificationWithAdapter(position)
+                CreateNotification.createNotification(
+                    requireActivity(),
+                    bookData,
+                    R.drawable.ic_pause_notif,
+                    position,
+                    audios.size - 1
+                )
+                resetPlayer()
+                playSource(getAudioPath(audio))
+                lastPlayingChapter = audio
+            } else {
+                downloadFile(bookData, position)
+            }
         } else {
             position = audios.size
         }
     }
 
-    private fun getAudioPath(audio: Halqa): String =
+    private fun getAudioPath(audio: BookData): String =
         "${requireContext().getExternalFilesDir(null)}/${Constants.HALQAKITOB}/${audio.bookName}/${audio.bookName}${audio.bob}.mp3"
 
     private fun getFilePath(audioPath: String): String =
@@ -219,7 +242,7 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
 
     private fun refreshAdapter() {
         adapter = AudioBookAdapter(object : OnItemClickListener {
-            override fun onItemDownload(halqa: Halqa, position: Int) {
+            override fun onItemDownload(halqa: BookData, position: Int) {
                 downloadFile(halqa, position)
             }
 
@@ -231,7 +254,7 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
                 tvPassedDuration: TextView,
                 lastAudioPlaying: Int,
                 position: Int,
-                halqa: Halqa
+                halqa: BookData
             ) {
                 this@HalqaAudioFragment.position = position
                 filePath = getFilePath(audioPath)
@@ -248,7 +271,7 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
                     }
                     adapter.updateAudioPlayStatus(position)
                 } else {
-                    lastPlayingHalqaChapter = halqa
+                    lastPlayingChapter = halqa
                     adapter.updateAudioPlayStatus(lastAudioPlaying)
                     adapter.updateAudioPlayStatus(position)
                     resetPlayer()
@@ -327,28 +350,28 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
             e.printStackTrace()
         }
 
-    fun downloadFile(halqa: Halqa, position: Int) {
-        val folderName = "HalqaKitob/${halqa.bookName}"
-        val request = DownloadManager.Request(Uri.parse(halqa.url))
+    fun downloadFile(bookData: BookData, position: Int) {
+        val folderName = "${bookData.bookName}${BOOK_EXTRA}/${bookData.bookName}"
+        val request = DownloadManager.Request(Uri.parse(bookData.url))
             .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
             .setTitle("Halqa")
-            .setDescription("Halqa Audio Kitob")
+            .setDescription("${bookData.bookName} Audio Kitob")
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             .setAllowedOverMetered(true)
             .setAllowedOverRoaming(false)
             .setDestinationInExternalFilesDir(
                 context,
                 folderName,
-                "${halqa.bookName}${halqa.bob}.mp3"
+                "${bookData.bookName}${bookData.bob}.mp3"
             )
         val downloadManager =
             requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val downloadID = downloadManager.enqueue(request)
-        appDatabase?.halqaDao()?.updatePost(true, halqa.id!!)
+        appDatabase?.bookDao()?.updatePost(true, bookData.id!!)
 
         audioDownloadReceiver.onDownloadCompleted = {
 
-            appDatabase?.halqaDao()?.updatePost(true, halqa.id!!)
+            appDatabase?.bookDao()?.updatePost(true, bookData.id!!)
 
             adapter.updateAudioDownloadStatus(position)
         }

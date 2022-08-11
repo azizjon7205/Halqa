@@ -1,22 +1,21 @@
 package com.example.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.halqa.R
 import com.example.halqa.databinding.ItemAudioBookBinding
 import com.example.helper.OnItemClickListener
-import com.example.model.Halqa
-import com.example.utils.Constants
+import com.example.model.BookData
+import com.example.utils.Constants.BOOK_EXTRA
+import com.example.utils.Constants.JANGCHI
 import com.example.utils.hide
 import com.example.utils.show
-import kotlin.math.log
 
 class AudioBookAdapter(private val onItemClickListener: OnItemClickListener) :
     RecyclerView.Adapter<AudioBookAdapter.VH>() {
 
-    private val audioList: ArrayList<Halqa> = arrayListOf()
+    private val audioList: ArrayList<BookData> = arrayListOf()
     private var selectedAudioPosition = -1
     private var lastAudioSelectedPosition = -1
 
@@ -32,8 +31,10 @@ class AudioBookAdapter(private val onItemClickListener: OnItemClickListener) :
 
         holder.binding.apply {
             val audio = audioList[position]
-            Log.d("TAG", "onBindViewHolder: $audio")
             tvBob.text = audio.bob
+            tvAudioName.text = audio.bookName + " (Audio)"
+            if (audio.bookName == JANGCHI)
+                ivBookImage.setImageResource(R.drawable.jangchi)
 
             if (audio.isDownload) {
                 if (audio.isPlaying) {
@@ -60,7 +61,7 @@ class AudioBookAdapter(private val onItemClickListener: OnItemClickListener) :
                         }
 
                         onItemClickListener.onItemPlay(
-                            "${Constants.HALQAKITOB}/${audio.bookName}/${audio.bookName}${audio.bob}.mp3",
+                            "${audio.bookName}${BOOK_EXTRA}/${audio.bookName}/${audio.bookName}${audio.bob}.mp3",
                             seekBar,
                             llSeek,
                             tvFullDuration,
@@ -80,11 +81,11 @@ class AudioBookAdapter(private val onItemClickListener: OnItemClickListener) :
 
     override fun getItemCount(): Int = audioList.size
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 
-    fun submitList(audioList: List<Halqa>) {
+    fun submitList(audioList: List<BookData>) {
         this.audioList.addAll(audioList)
     }
 

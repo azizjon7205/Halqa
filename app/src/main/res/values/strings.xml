@@ -7107,6 +7107,7 @@ Akrom Malik,
 
 Toshkent, 2020.
         </item>
+
     </string-array>
 
     <string-array name="chapter_jangchi_crill">
@@ -8204,8 +8205,6 @@ Toshkent, 2020.
 
     </string-array>
 
-    
-
     <string-array name="halqa">
         <item>https://firebasestorage.googleapis.com/v0/b/halqa-f2d7b.appspot.com/o/Halqa%20(1-bob).mp3?alt=media&amp;token=9a74295a-c14c-4657-8fdd-ea75836cee14</item>
         <item>https://firebasestorage.googleapis.com/v0/b/halqa-f2d7b.appspot.com/o/Halqa%20(2-bob).mp3?alt=media&amp;token=4d1cd5f3-98cd-4d20-a90a-832b79ac740c</item>
@@ -8257,6 +8256,7 @@ Toshkent, 2020.
         <item>https://firebasestorage.googleapis.com/v0/b/halqa-f2d7b.appspot.com/o/Jangchi%20(13-bob).mp3?alt=media&amp;token=fa5d48c6-19f4-4f5e-a150-07c405caac9f</item>
         <item>https://firebasestorage.googleapis.com/v0/b/halqa-f2d7b.appspot.com/o/Jangchi%20(14-bob).mp3?alt=media&amp;token=084b9b7c-4b05-4f62-9a35-8444d4fc28b1</item>
     </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="str_last_chapter">Oxirgi bob</string>

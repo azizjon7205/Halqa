@@ -1,12 +1,12 @@
 package com.example.helper
 
-import com.example.model.Halqa
+import com.example.model.BookData
 
 interface Playable {
 
-    fun onTrackPrevious(halqa: Halqa)
-    fun onTrackPlay(halqa: Halqa)
-    fun onTrackPause(halqa: Halqa)
-    fun onTrackNext(halqa: Halqa)
+    fun onTrackPrevious(bookData: BookData)
+    fun onTrackPlay(bookData: BookData)
+    fun onTrackPause(bookData: BookData)
+    fun onTrackNext(bookData: BookData)
 
 }
