@@ -61,10 +61,28 @@
 
                 <ImageView
                     android:id="@+id/ivPlay"
-                    android:layout_width="70dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_download" />
+
+                <LinearLayout
+                    android:visibility="invisible"
+                    android:id="@+id/progressWrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:paddingHorizontal="12dp"
+                    android:paddingBottom="12dp">
+
+                    <ProgressBar
+                        style="?android:attr/progressBarStyleLarge"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:indeterminate="true"
+                        android:indeterminateDrawable="@drawable/example"/>
+
+                </LinearLayout>
 
             </FrameLayout>
         </LinearLayout>

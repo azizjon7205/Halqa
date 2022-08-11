@@ -32,7 +32,6 @@ import com.example.helper.Playable
 import com.example.model.BookData
 import com.example.notification.CreateNotification
 import com.example.receiver.AudioDownloadReceiver
-import com.example.service.MusicService
 import com.example.utils.Constants
 import com.example.utils.Constants.ACTION_NAME
 import com.example.utils.Constants.AUDIO
@@ -80,7 +79,6 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createChannel()
             requireActivity().registerReceiver(broadcastReceiver, IntentFilter("TRACKS_TRACKS"))
-            requireActivity().stopService(Intent(requireContext(), MusicService::class.java))
         }
 
         if (book == HALQA)
@@ -350,12 +348,12 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
             e.printStackTrace()
         }
 
-    fun downloadFile(bookData: BookData, position: Int) {
+    private fun downloadFile(bookData: BookData, position: Int) {
         val folderName = "${bookData.bookName}${BOOK_EXTRA}/${bookData.bookName}"
         val request = DownloadManager.Request(Uri.parse(bookData.url))
             .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
             .setTitle("Halqa")
-            .setDescription("${bookData.bookName} Audio Kitob")
+            .setDescription("${bookData.bookName} audio kitob")
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             .setAllowedOverMetered(true)
             .setAllowedOverRoaming(false)
@@ -367,13 +365,11 @@ class HalqaAudioFragment : Fragment(R.layout.fragment_halqa_audio), Playable {
         val downloadManager =
             requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val downloadID = downloadManager.enqueue(request)
-        appDatabase?.bookDao()?.updatePost(true, bookData.id!!)
-
-        audioDownloadReceiver.onDownloadCompleted = {
-
-            appDatabase?.bookDao()?.updatePost(true, bookData.id!!)
-
-            adapter.updateAudioDownloadStatus(position)
+        appDatabase?.bookDao()?.updateBookDownloadID(bookData.id!!, downloadID)
+        adapter.changeAudioDownloadID(position, downloadID)
+        audioDownloadReceiver.onDownloadCompleted = { ID ->
+            appDatabase?.bookDao()?.updatePost(true, ID!!)
+            adapter.updateAudioDownloadStatus(ID)
         }
     }
 

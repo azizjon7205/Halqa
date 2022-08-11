@@ -7,7 +7,7 @@ import com.example.model.BookData
 
 interface OnItemClickListener {
 
-    fun onItemDownload(halqa: BookData, position: Int)
+    fun onItemDownload(bookData: BookData, position: Int)
 
     fun onItemPlay(
         audioPath: String,

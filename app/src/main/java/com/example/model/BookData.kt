@@ -11,5 +11,6 @@ data class BookData(
     var bookName: String,
     var url: String,
     var isDownload: Boolean = false,
-    var isPlaying: Boolean = false
+    var isPlaying: Boolean = false,
+    var downloadID: Long = -1
 )

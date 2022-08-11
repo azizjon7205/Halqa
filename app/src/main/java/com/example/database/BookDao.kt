@@ -16,8 +16,11 @@ interface BookDao {
     @Query("SELECT * FROM halqabook WHERE bookName = :bookName")
     fun getPosts(bookName: String): LiveData<List<BookData>>
 
-    @Query("UPDATE halqabook SET isDownload=:isDownload WHERE id=:id")
-    fun updatePost(isDownload: Boolean, id: Int): Int
+    @Query("UPDATE halqabook SET isDownload=:isDownload WHERE downloadID=:ID")
+    fun updatePost(isDownload: Boolean, ID: Long): Int
+
+    @Query("UPDATE halqabook SET downloadID=:ID WHERE id=:bookID")
+    fun updateBookDownloadID(bookID: Int, ID: Long): Int
 
     @Query("SELECT * FROM halqabook WHERE id=:id")
     fun getPost(id: Int): LiveData<BookData>

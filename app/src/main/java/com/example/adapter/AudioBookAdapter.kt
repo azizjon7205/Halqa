@@ -1,5 +1,6 @@
 package com.example.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +11,7 @@ import com.example.model.BookData
 import com.example.utils.Constants.BOOK_EXTRA
 import com.example.utils.Constants.JANGCHI
 import com.example.utils.hide
+import com.example.utils.invisible
 import com.example.utils.show
 
 class AudioBookAdapter(private val onItemClickListener: OnItemClickListener) :
@@ -28,7 +30,7 @@ class AudioBookAdapter(private val onItemClickListener: OnItemClickListener) :
     )
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-
+        Log.d("TAG", "onBindViewHolder: came $position")
         holder.binding.apply {
             val audio = audioList[position]
             tvBob.text = audio.bob
@@ -37,6 +39,7 @@ class AudioBookAdapter(private val onItemClickListener: OnItemClickListener) :
                 ivBookImage.setImageResource(R.drawable.jangchi)
 
             if (audio.isDownload) {
+                progressWrapper.hide()
                 if (audio.isPlaying) {
                     ivPlay.setImageResource(R.drawable.ic_pause)
                     llSeek.show()
@@ -47,33 +50,31 @@ class AudioBookAdapter(private val onItemClickListener: OnItemClickListener) :
             } else ivPlay.setImageResource(R.drawable.ic_download)
 
             ivPlay.setOnClickListener {
-                when (audio.isDownload) {
-                    true -> {
-                        lastAudioSelectedPosition = selectedAudioPosition
-                        selectedAudioPosition = holder.absoluteAdapterPosition
+                if (audio.isDownload) {
+                    lastAudioSelectedPosition = selectedAudioPosition
+                    selectedAudioPosition = holder.absoluteAdapterPosition
 
-                        if (audio.isPlaying) {
-                            ivPlay.setImageResource(R.drawable.ic_pause)
-                            llSeek.show()
-                        } else {
-                            ivPlay.setImageResource(R.drawable.ic_play)
-                            llSeek.hide()
-                        }
+                    if (audio.isPlaying) {
+                        ivPlay.setImageResource(R.drawable.ic_pause)
+                        llSeek.show()
+                    } else {
+                        ivPlay.setImageResource(R.drawable.ic_play)
+                        llSeek.hide()
+                    }
 
-                        onItemClickListener.onItemPlay(
-                            "${audio.bookName}${BOOK_EXTRA}/${audio.bookName}/${audio.bookName}${audio.bob}.mp3",
-                            seekBar,
-                            llSeek,
-                            tvFullDuration,
-                            tvPassedDuration,
-                            lastAudioSelectedPosition,
-                            selectedAudioPosition,
-                            audio
-                        )
-                    }
-                    false -> {
-                        onItemClickListener.onItemDownload(audio, position)
-                    }
+                    onItemClickListener.onItemPlay(
+                        "${audio.bookName}${BOOK_EXTRA}/${audio.bookName}/${audio.bookName}${audio.bob}.mp3",
+                        seekBar,
+                        llSeek,
+                        tvFullDuration,
+                        tvPassedDuration,
+                        lastAudioSelectedPosition,
+                        selectedAudioPosition,
+                        audio
+                    )
+                } else {
+                    progressWrapper.show()
+                    onItemClickListener.onItemDownload(audio, position)
                 }
             }
         }
@@ -96,9 +97,14 @@ class AudioBookAdapter(private val onItemClickListener: OnItemClickListener) :
         notifyItemChanged(position)
     }
 
-    fun updateAudioDownloadStatus(position: Int) {
-        this.audioList[position].isDownload = true
-        notifyItemChanged(position)
+    fun updateAudioDownloadStatus(ID: Long?) {
+        this.audioList.forEachIndexed { index, bookData ->
+            if (bookData.downloadID == ID) {
+                this.audioList[index].isDownload = true
+                notifyItemChanged(index)
+                return
+            }
+        }
     }
 
     fun changeCurrentPlayingAudio(position: Int) {
@@ -108,5 +114,9 @@ class AudioBookAdapter(private val onItemClickListener: OnItemClickListener) :
 
     fun changeLastPlayingAudio(position: Int) {
         this.lastAudioSelectedPosition = position
+    }
+
+    fun changeAudioDownloadID(position: Int, downloadID: Long) {
+        this.audioList[position].downloadID = downloadID
     }
 }
