@@ -1,6 +1,5 @@
 package com.example.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -14,15 +13,15 @@ interface BookDao {
     fun createPost(halqa: BookData)
 
     @Query("SELECT * FROM halqabook WHERE bookName = :bookName")
-    fun getPosts(bookName: String): LiveData<List<BookData>>
+    suspend fun getBookAudios(bookName: String): List<BookData>
 
     @Query("UPDATE halqabook SET isDownload=:isDownload WHERE downloadID=:ID")
-    fun updatePost(isDownload: Boolean, ID: Long): Int
+    suspend fun updateDownload(isDownload: Boolean, ID: Long): Int
 
     @Query("UPDATE halqabook SET downloadID=:ID WHERE id=:bookID")
-    fun updateBookDownloadID(bookID: Int, ID: Long): Int
+    suspend fun updateBookDownloadID(bookID: Int, ID: Long): Int
 
     @Query("SELECT * FROM halqabook WHERE id=:id")
-    fun getPost(id: Int): LiveData<BookData>
+    suspend fun getAudio(id: Int): BookData
 
 }

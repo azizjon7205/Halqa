@@ -53,14 +53,14 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
 
             halqaAudioAbdukarimMWrapper.setOnClickListener {
                 findNavController().navigate(
-                    R.id.action_categoryFragment_to_halqaAudioFragment,
+                    R.id.action_categoryFragment_to_allAudioListFragment,
                     bundleOf(AUDIO to HALQA)
                 )
             }
 
             jangchiAudioAbdukarimMWrapper.setOnClickListener {
                 findNavController().navigate(
-                    R.id.action_categoryFragment_to_halqaAudioFragment,
+                    R.id.action_categoryFragment_to_allAudioListFragment,
                     bundleOf(AUDIO to JANGCHI)
                 )
             }

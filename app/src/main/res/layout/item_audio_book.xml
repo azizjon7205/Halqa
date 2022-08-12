@@ -44,85 +44,84 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/tvBob"
+                    android:id="@+id/tvArtist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
-                    android:textColor="#99000000"
-                    android:textSize="16sp" />
+                    android:textColor="#90000000"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <FrameLayout
-                android:layout_width="70dp"
-                android:layout_height="match_parent">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical">
 
                 <ImageView
                     android:id="@+id/ivPlay"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_download" />
-
-                <LinearLayout
-                    android:visibility="invisible"
-                    android:id="@+id/progressWrapper"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:paddingHorizontal="12dp"
-                    android:paddingBottom="12dp">
-
-                    <ProgressBar
-                        style="?android:attr/progressBarStyleLarge"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:indeterminate="true"
-                        android:indeterminateDrawable="@drawable/example"/>
-
-                </LinearLayout>
+                    android:src="@drawable/ic_continue" />
 
             </FrameLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llSeek"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/tvPassedDuration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="00:00"
-                android:textAlignment="center"
-                android:textColor="#99000000"
-                android:textSize="12sp" />
-
-            <SeekBar
-                android:id="@+id/seekBar"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_weight="1"
-                android:progressBackgroundTint="@color/black"
-                android:theme="@style/progressColor" />
-
-            <TextView
-                android:id="@+id/tvFullDuration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="00:00"
-                android:textAlignment="center"
-                android:textColor="#99000000"
-                android:textSize="12sp" />
-        </LinearLayout>
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</androidx.cardview.widget.CardView><!--<LinearLayout-->
+    <!--android:id="@+id/llSeek"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="5dp"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:visibility="gone">-->
+
+    <!--<TextView-->
+    <!--    android:id="@+id/tvPassedDuration"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:fontFamily="@font/poppins"-->
+    <!--    android:text="00:00"-->
+    <!--    android:textAlignment="center"-->
+    <!--    android:textColor="#99000000"-->
+    <!--    android:textSize="12sp" />-->
+
+    <!--<SeekBar-->
+    <!--    android:id="@+id/seekBar"-->
+    <!--    android:layout_width="0dp"-->
+    <!--    android:layout_height="20dp"-->
+    <!--    android:layout_weight="1"-->
+    <!--    android:progressBackgroundTint="@color/black"-->
+    <!--    android:theme="@style/progressColor" />-->
+
+    <!--<TextView-->
+    <!--    android:id="@+id/tvFullDuration"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:fontFamily="@font/poppins"-->
+    <!--    android:text="00:00"-->
+    <!--    android:textAlignment="center"-->
+    <!--    android:textColor="#99000000"-->
+    <!--    android:textSize="12sp" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:visibility="invisible"-->
+    <!--android:id="@+id/progressWrapper"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:paddingHorizontal="12dp"-->
+    <!--android:paddingBottom="12dp">-->
+
+    <!--<ProgressBar-->
+    <!--    style="?android:attr/progressBarStyleLarge"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    android:indeterminate="true"-->
+    <!--    android:indeterminateDrawable="@drawable/example"/>-->
+
+    <!--</LinearLayout>-->

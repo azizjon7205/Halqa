@@ -17,6 +17,6 @@ interface OnItemClickListener {
         tvPassedDuration: TextView,
         lastAudioPlaying: Int,
         position: Int,
-        halqa: BookData
+        bookData: BookData
     )
 }

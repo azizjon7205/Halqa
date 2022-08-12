@@ -30,9 +30,10 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+
         <action
-            android:id="@+id/action_categoryFragment_to_halqaAudioFragment"
-            app:destination="@id/halqaAudioFragment"
+            android:id="@+id/action_categoryFragment_to_allAudioListFragment"
+            app:destination="@id/allAudioListFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -44,8 +45,21 @@
         android:label="fragment_book"
         tools:layout="@layout/fragment_book" />
     <fragment
-        android:id="@+id/halqaAudioFragment"
-        android:name="com.example.fragment.HalqaAudioFragment"
-        android:label="fragment_halqa_audio"
-        tools:layout="@layout/fragment_halqa_audio" />
+        android:id="@+id/allAudioListFragment"
+        android:name="com.example.fragment.AllAudioListFragment"
+        android:label="fragment_all_audio_list"
+        tools:layout="@layout/fragment_all_audio_list">
+        <action
+            android:id="@+id/action_allAudioListFragment_to_audioPlayFragment"
+            app:destination="@id/audioPlayFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/audioPlayFragment"
+        android:name="com.example.fragment.AudioPlayFragment"
+        android:label="fragment_audio_play"
+        tools:layout="@layout/fragment_audio_play" />
 </navigation>
