@@ -42,10 +42,11 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/Halqa/app/src/main/res/drawable/iv_circle_background.xml" value="0.1175" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Halqa/app/src/main/res/drawable/iv_circle_background_2.xml" value="0.1175" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Halqa/app/src/main/res/drawable/menu_background.xml" value="0.1175" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Halqa/app/src/main/res/drawable/progress.xml" value="0.1175" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Halqa/app/src/main/res/layout/activity_main.xml" value="0.15534420289855072" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Halqa/app/src/main/res/layout/activity_splash.xml" value="0.15534420289855072" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Halqa/app/src/main/res/layout/fragment_all_audio_list.xml" value="0.1" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/Halqa/app/src/main/res/layout/fragment_audio_play.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Halqa/app/src/main/res/layout/fragment_audio_play.xml" value="0.18" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Halqa/app/src/main/res/layout/fragment_book.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Halqa/app/src/main/res/layout/fragment_category.xml" value="0.30288461538461536" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Halqa/app/src/main/res/layout/fragment_halqa_audio.xml" value="0.1" />

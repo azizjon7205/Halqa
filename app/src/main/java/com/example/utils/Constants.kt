@@ -12,4 +12,6 @@ object Constants {
     const val JANGCHIKITOB = "JangchiKitob"
     const val ACTION_NAME = "actionName"
     const val AUTHOR = "Akrom Malik"
+    const val HALQA_AUIDIO_LIST_SIZE = 32
+    const val JANGCHI_AUIDIO_LIST_SIZE = 14
 }

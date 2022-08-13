@@ -4,9 +4,9 @@ import com.example.model.BookData
 
 interface Playable {
 
-    fun onTrackPrevious(bookData: BookData)
+    fun onTrackPrevious()
     fun onTrackPlay(bookData: BookData)
     fun onTrackPause(bookData: BookData)
-    fun onTrackNext(bookData: BookData)
+    fun onTrackNext()
 
 }

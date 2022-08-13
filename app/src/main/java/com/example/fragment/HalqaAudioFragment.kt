@@ -110,24 +110,24 @@
 //        override fun onReceive(context: Context, intent: Intent) {
 //            when (intent.extras?.getString(ACTION_NAME)) {
 //
-//                CreateNotification.ACTION_NEXT -> onTrackNext(audios[position + 1])
+//                CreateNotification.ACTION_NEXT -> onTrackNext()
 //
 //                CreateNotification.ACTION_PLAY -> {
 //                    adapter.updateAudioPlayStatus(position)
 //                    isPlaying = !isPlaying
 //                    if (isPlaying) {
-//                        onTrackPlay(lastPlayingChapter)
+//                        onTrackPlay()
 //                    } else {
-//                        onTrackPause(lastPlayingChapter)
+//                        onTrackPause()
 //                    }
 //                }
 //
-//                CreateNotification.ACTION_PREVIOUS -> onTrackPrevious(audios[position - 1])
+//                CreateNotification.ACTION_PREVIOUS -> onTrackPrevious()
 //            }
 //        }
 //    }
 //
-//    override fun onTrackPrevious(bookData: BookData) {
+//    override fun onTrackPrevious() {
 //        position--
 //
 //        if (checkPositionValidity(position)) {
@@ -153,7 +153,7 @@
 //        }
 //    }
 //
-//    override fun onTrackPlay(bookData: BookData) {
+//    override fun onTrackPlay() {
 //        CreateNotification.createNotification(
 //            requireActivity(),
 //            bookData,
@@ -165,7 +165,7 @@
 //        isPlaying = mediaPlayer.isPlaying
 //    }
 //
-//    override fun onTrackPause(bookData: BookData) {
+//    override fun onTrackPause() {
 //        CreateNotification.createNotification(
 //            requireActivity(),
 //            bookData,
@@ -177,7 +177,7 @@
 //        isPlaying = mediaPlayer.isPlaying
 //    }
 //
-//    override fun onTrackNext(bookData: BookData) {
+//    override fun onTrackNext() {
 //        position++
 //        if (checkPositionValidity(position)) {
 //            control(position)
@@ -286,10 +286,10 @@
 //                if (position == lastAudioPlaying) {
 //                    if (isPlaying) {
 //                        pauseMediaPlayer()
-//                        onTrackPause(bookData)
+//                        onTrackPause()
 //                    } else {
 //                        playMediaPlayer()
-//                        onTrackPlay(bookData)
+//                        onTrackPlay()
 //                    }
 //                    adapter.updateAudioPlayStatus(position)
 //                } else {
@@ -298,7 +298,7 @@
 //                    adapter.updateAudioPlayStatus(position)
 //                    resetPlayer()
 //                    playSource(filePath)
-//                    onTrackPlay(bookData)
+//                    onTrackPlay()
 //                }
 //
 //                seekBar.max = mediaPlayer.duration
