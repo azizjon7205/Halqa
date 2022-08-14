@@ -25,6 +25,6 @@ interface BookDao {
     suspend fun getAudio(id: Int): BookData
 
     @Query("SELECT downloadID FROM halqabook WHERE id=:id")
-    suspend fun getDownloadId(id: Int?): Int
+    suspend fun getDownloadId(id: Int?): Long
 
 }

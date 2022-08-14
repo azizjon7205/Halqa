@@ -8262,4 +8262,5 @@ Toshkent, 2020.
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="str_last_chapter">Oxirgi bob</string>
     <string name="audio_kitoblar">Audio Kitoblar</string>
+    <string name="str_start">00:00</string>
 </resources>

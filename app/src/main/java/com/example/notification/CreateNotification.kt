@@ -36,7 +36,7 @@ object CreateNotification {
             val mediaSessionCompat = MediaSession(context, "tag")
 
             val drawablePrevious: Int
-            val pendingIntentPrevious: PendingIntent? = if (position == 0) {
+            val pendingIntentPrevious: PendingIntent? = if (position == 1) {
                 drawablePrevious = 0
                 null
             } else {

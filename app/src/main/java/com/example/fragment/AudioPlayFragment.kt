@@ -16,7 +16,6 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.SeekBar
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
@@ -36,13 +35,18 @@ import com.example.utils.Constants.AUDIO
 import com.example.utils.Constants.BOOK_EXTRA
 import com.example.utils.Constants.HALQA
 import com.example.utils.Constants.HALQA_AUIDIO_LIST_SIZE
+import com.example.utils.Constants.JANGCHI_AUIDIO_LIST_SIZE
 import com.example.utils.UiStateObject
+import com.example.utils.hide
+import com.example.utils.show
 import com.example.viewmodel.AudioPlayingViewModel
 import kotlinx.coroutines.launch
 import java.io.File
 
 class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
 
+    private var lastDownloadID: Long = 0L
+    private var downloadedAudioID: Long = 0L
     private lateinit var bookData: BookData
     private var audioListSize: Int = HALQA_AUIDIO_LIST_SIZE
     private var isPlaying: Boolean = false
@@ -64,13 +68,12 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
         arguments?.let {
             audioID = it.getInt(AUDIO)
             if (audioID > HALQA_AUIDIO_LIST_SIZE)
-                audioListSize = 14
+                audioListSize = JANGCHI_AUIDIO_LIST_SIZE
         }
 
         mediaPlayer = MediaPlayer()
         sendRequestToGetAudio()
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -78,6 +81,7 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
         setUpObserver()
         setUpNextObserver()
         setUpPreviousObserver()
+        setUpDownloadIdObserver()
         initViews()
     }
 
@@ -103,6 +107,8 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
 
     override fun onTrackPrevious() {
         audioID--
+        managePreviousLastVisibility(isFirstAudio(), binding.ivPrevious)
+        managePreviousLastVisibility(isLastAudio(), binding.ivNext)
         if (checkAudioIdValidity(audioID)) {
             resetPlayer()
             sendRequestToGetPreviousAudio()
@@ -112,12 +118,14 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
     }
 
     override fun onTrackPause(bookData: BookData) {
+        binding.ivPlayPause.setImageResource(R.drawable.ic_play_notif)
         createNotification(bookData, R.drawable.ic_play_notif)
         pauseMediaPlayer()
         isPlaying = mediaPlayer.isPlaying
     }
 
     override fun onTrackPlay(bookData: BookData) {
+        binding.ivPlayPause.setImageResource(R.drawable.ic_pause_notif)
         createNotification(bookData, R.drawable.ic_pause_notif)
         playMediaPlayer()
         isPlaying = mediaPlayer.isPlaying
@@ -125,6 +133,8 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
 
     override fun onTrackNext() {
         audioID++
+        managePreviousLastVisibility(isLastAudio(), binding.ivNext)
+        managePreviousLastVisibility(isFirstAudio(), binding.ivPrevious)
         if (checkAudioIdValidity(audioID)) {
             resetPlayer()
             sendRequestToGetNextAudio()
@@ -141,6 +151,12 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
         else audioID in 33..46
     }
 
+    private fun isFirstAudio(): Boolean =
+        if (bookData.bookName == HALQA) audioID == 1 else audioID == 33
+
+    private fun isLastAudio(): Boolean =
+        if (bookData.bookName == HALQA) audioID == 32 else audioID == 46
+
     private fun sendRequestToGetAudio() {
         audioPlayingViewModel.getAudio(audioID)
     }
@@ -150,54 +166,7 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
     }
 
     private fun sendRequestToGetNextAudio() {
-        audioPlayingViewModel.getPreviousAudio(audioID)
-    }
-
-    private fun setUpPreviousObserver() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                audioPlayingViewModel.previousAudio.collect {
-                    when (it) {
-                        UiStateObject.LOADING -> {
-                            //show progress
-                        }
-
-                        is UiStateObject.SUCCESS -> {
-                            Log.d("TAG", "setUpObserver: ${it.data}")
-                            bookData = it.data
-                            setData(it.data)
-                            //createNotification(it.data, R.drawable.ic_pause_notif)
-                        }
-                        is UiStateObject.ERROR -> {
-                        }
-                        else -> {}
-                    }
-                }
-            }
-        }
-    }
-
-    private fun setUpNextObserver() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                audioPlayingViewModel.nextAudio.collect {
-                    when (it) {
-                        UiStateObject.LOADING -> {
-                            //show progress
-                        }
-
-                        is UiStateObject.SUCCESS -> {
-                            Log.d("TAG", "setUpObserver: ${it.data}")
-                            bookData = it.data
-                            setData(it.data)
-                        }
-                        is UiStateObject.ERROR -> {
-                        }
-                        else -> {}
-                    }
-                }
-            }
-        }
+        audioPlayingViewModel.getNextAudio(audioID)
     }
 
     private fun createNotification(bookData: BookData, drawable: Int) {
@@ -238,16 +207,30 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
             ivPrevious.setOnClickListener {
                 audioID--
                 if (checkAudioIdValidity(audioID)) {
+                    resetPlayer()
                     sendRequestToGetPreviousAudio()
                 }
+                managePreviousLastVisibility(isFirstAudio(), ivPrevious)
+                managePreviousLastVisibility(isLastAudio(), ivNext)
             }
 
             ivNext.setOnClickListener {
                 audioID++
                 if (checkAudioIdValidity(audioID)) {
+                    resetPlayer()
                     sendRequestToGetNextAudio()
                 }
+                managePreviousLastVisibility(isLastAudio(), ivNext)
+                managePreviousLastVisibility(isFirstAudio(), ivPrevious)
             }
+        }
+    }
+
+    private fun managePreviousLastVisibility(isTarget: Boolean, view: View) {
+        if (isTarget) {
+            view.hide()
+        } else {
+            view.show()
         }
     }
 
@@ -287,6 +270,7 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
                         is UiStateObject.SUCCESS -> {
                             bookData = it.data
                             setData(it.data)
+                            //setUpDownloadToTruUpdateObserver(bookData)
                         }
                         is UiStateObject.ERROR -> {
                         }
@@ -299,23 +283,29 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
 
     //data setting to UI
     private fun setData(bookData: BookData) {
+        Log.d("TAG", "setUpObserver setData: $bookData")
         if (bookData.isDownload) {
             resetPlayer()
-            playSource(getFilePath(getUri(bookData)))
+            if (!mediaPlayer.isPlaying)
+                playSource(getFilePath(getUri(bookData)))
+            hideProgress()
             binding.apply {
                 tvAudioTitle.text = "${bookData.bookName} ${bookData.bob}"
+                managePreviousLastVisibility(isFirstAudio(), binding.ivPrevious)
+                managePreviousLastVisibility(isLastAudio(), binding.ivNext)
                 tvFullDuration.text = getDuration(mediaPlayer.duration / 1000)
                 setSeekBarCorrespondingly()
                 onTrackPlay(bookData)
             }
         } else {
-            showProgress()
+            showProgress(bookData)
             downloadFile(bookData, false)
         }
     }
 
-    private fun showProgress() {
+    private fun showProgress(bookData: BookData) {
         binding.downloadProgress.visibility = View.VISIBLE
+        binding.tvAudioTitle.text = "Yuklanmoqda... (${bookData.bookName} ${bookData.bob})"
     }
 
     private fun hideProgress() {
@@ -397,7 +387,9 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
         }
 
     private fun downloadFile(bookData: BookData, isFromNotification: Boolean) {
-        val folderName = "${bookData.bookName}${Constants.BOOK_EXTRA}/${bookData.bookName}"
+        resetSeekBar()
+        Log.d("TAG", "setUpObserver downloadFile: $bookData")
+        val folderName = "${bookData.bookName}${BOOK_EXTRA}/${bookData.bookName}"
         val request = DownloadManager.Request(Uri.parse(bookData.url))
             .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
             .setTitle(bookData.bookName)
@@ -413,15 +405,28 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
         val downloadManager =
             requireActivity().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val downloadID = downloadManager.enqueue(request)
+        lastDownloadID = downloadID
+        Log.d("TAG", "setUpObserver downloadID: $downloadID")
         audioPlayingViewModel.checkIsDownloadIDChange(bookData.id)
-        setUpDownloadIdObserver(downloadID)
+
         audioDownloadReceiver.onDownloadCompleted = { ID ->
-            audioPlayingViewModel.updateDownloadStatus(true, ID!!)
-            setUpDownloadToTruUpdateObserver(bookData)
+            downloadedAudioID = ID!!
+            Log.d("TAG", "setUpObserver ID: $ID")
+            audioPlayingViewModel.updateDownloadStatus(true, ID)
+            audioPlayingViewModel.checkIsDownloadIDChange(bookData.id)
         }
     }
 
-    private fun setUpDownloadIdObserver(downloadID: Long) {
+    private fun resetSeekBar() {
+        binding.apply {
+            seekBar.max = 1
+            seekBar.progress = 0
+            tvPassingDuration.text = getString(R.string.str_start)
+            tvFullDuration.text = getString(R.string.str_start)
+        }
+    }
+
+    private fun setUpDownloadIdObserver() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 audioPlayingViewModel.downloadId.collect {
@@ -431,11 +436,19 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
                         }
 
                         is UiStateObject.SUCCESS -> {
-                            if (it.data == -1) {
+                            Log.d(
+                                "TAG",
+                                "setUpObserver downloadID:${downloadedAudioID} $lastDownloadID  ${it.data}"
+                            )
+                            if (it.data == -1L) {
                                 audioPlayingViewModel.updateDownloadStatus(
                                     bookData.id!!,
-                                    downloadID
+                                    lastDownloadID
                                 )
+                            }
+                            if (it.data == lastDownloadID && lastDownloadID == downloadedAudioID) {
+                                bookData.isDownload = true
+                                setData(bookData)
                             }
                         }
                         is UiStateObject.ERROR -> {
@@ -447,19 +460,20 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
         }
     }
 
-    private fun setUpDownloadToTruUpdateObserver(bookData: BookData) {
+    private fun setUpPreviousObserver() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                audioPlayingViewModel.updatedDownloadToTrue.collect {
+                audioPlayingViewModel.previousAudio.collect {
                     when (it) {
                         UiStateObject.LOADING -> {
                             //show progress
                         }
 
                         is UiStateObject.SUCCESS -> {
-                            hideProgress()
-                            playSource(getFilePath(getUri(bookData)))
-                            onTrackPlay(bookData)
+                            Log.d("TAG", "setUpObserver Previous: ${it.data}")
+                            bookData = it.data
+                            setData(it.data)
+                            //createNotification(it.data, R.drawable.ic_pause_notif)
                         }
                         is UiStateObject.ERROR -> {
                         }
@@ -469,4 +483,28 @@ class AudioPlayFragment : Fragment(R.layout.fragment_audio_play), Playable {
             }
         }
     }
+
+    private fun setUpNextObserver() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                audioPlayingViewModel.nextAudio.collect {
+                    when (it) {
+                        UiStateObject.LOADING -> {
+                            //show progress
+                        }
+
+                        is UiStateObject.SUCCESS -> {
+                            Log.d("TAG", "setUpObserver Next: ${it.data}")
+                            bookData = it.data
+                            setData(it.data)
+                        }
+                        is UiStateObject.ERROR -> {
+                        }
+                        else -> {}
+                    }
+                }
+            }
+        }
+    }
+
 }

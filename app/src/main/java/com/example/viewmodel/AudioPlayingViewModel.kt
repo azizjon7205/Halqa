@@ -27,7 +27,7 @@ class AudioPlayingViewModel(private val bookDao: BookDao) : ViewModel() {
     val updated = _updated
 
     private val _downloadId =
-        MutableStateFlow<UiStateObject<Int>>(UiStateObject.EMPTY)
+        MutableStateFlow<UiStateObject<Long>>(UiStateObject.EMPTY)
     val downloadId = _downloadId
 
     private val _updatedDownloadToTrue =
